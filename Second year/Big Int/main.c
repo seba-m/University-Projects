@@ -30,15 +30,15 @@
 #include <ctype.h>
 #endif /* ctype_h */
 
-#ifndef entero_largo_arreglo_h
+/*#ifndef entero_largo_arreglo_h
 #define entero_largo_arreglo_h
 #include "entero_largo_arreglo.h"
-#endif
+#endif*/
 
-/*#ifndef entero_largo_lista_h
+#ifndef entero_largo_lista_h
 #define entero_largo_lista_h
 #include "entero_largo_lista.h"
-#endif*/
+#endif
 
 int main(void){
         EnteroLargo *N1, *N2 = creaEnteroLargo();
@@ -63,7 +63,7 @@ int main(void){
                 printf("11. Multiplicar enteros largos\n");
                 printf("12. Dividir enteros largos\n");
                 printf("13. SALIR\n");
-                printf("\n(consejo: para poder usar la version arreglo, debe comentar las lineas 28-31, y descomentar las 23-26)\n");
+                printf("\n(consejo: para poder usar la version arreglo, debe comentar las lineas 38-41, y descomentar las 33-36)\n");
                 printf("\n\nopcion: ");
                 scanf("%i", &opcion);
 
