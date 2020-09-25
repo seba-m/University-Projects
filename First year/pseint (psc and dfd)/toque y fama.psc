@@ -1,12 +1,11 @@
 Algoritmo toque_y_fama_modulos
 	seguir <- 0
-    Mientras seguir = 0
+    Mientras seguir == 0
 		Escribir "toque y fama"
 		toqueyfama()
-		Escribir "por lo que veo has llegado hasta aqui, deseas continuar jugando= 1=si, 2=no"
+		Escribir "por lo que veo has llegado hasta aqui, deseas continuar jugando? 1=si, 2=no"
 		Leer seguir
-		Si (seguir=1)
-		Sino
+		Si (seguir==1)
 			seguir = seguir-1
 		FinSi
 	FinMientras
@@ -42,8 +41,8 @@ SubProceso  comprobacionnumeros(m Por Referencia,c Por Referencia,d Por Referenc
 			Sino
 				Escribir "Porfavor, los digitos del numero deben ser diferentes entre si"
 			FinSi
-			Sino
-				Escribir "el numero ingresado no es valido, porfavor ingresa un numero entre 0 y 9999"
+		Sino
+			Escribir "el numero ingresado no es valido, porfavor ingresa un numero entre 0 y 9999"
         FinSi
     FinMientras
 	m <- milesima
@@ -56,18 +55,17 @@ Funcion toqueyfama()
     int = 10
 	acertado = 0
     numerosrandom( random1,random2,random3,random4 )
-	Escribir random1,random2,random3,random4
     Mientras int>=1 y acertado <> 1
         toque = 0
         fama = 0
         comprobacionnumeros(milesima,centena,decena,unidad)
-        Si ((milesima != random1) o (centena !=random2) o (decena !=random3) o (unidad !=random4))
+        Si ((milesima <> random1) o (centena <>random2) o (decena <>random3) o (unidad <>random4))
             Si (milesima==random1)
 				fama = fama + 1
             Sino
-			Si (milesima==random2 O milesima==random3 O milesima==random4)
-				toque = toque + 1
-			FinSi
+				Si (milesima==random2 O milesima==random3 O milesima==random4)
+					toque = toque + 1
+				FinSi
             FinSi
             Si (centena==random2)
                 fama = fama + 1
@@ -115,4 +113,3 @@ Funcion numerosrandom(random1 Por Referencia,random2 Por Referencia,random3 Por 
     random3 = nr3
     random4 = nr4
 FinFuncion
-
