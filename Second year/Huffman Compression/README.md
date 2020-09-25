@@ -1,11 +1,11 @@
 [![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=272915&assignment_repo_type=GroupAssignmentRepo)
 # ¿Quién ha hecho qué?
 
-Antony Rodriguez = Ha creado el árbol de Huffman y la tabla de resultados.
+Antony Rodriguez = Ha creado el árbol de Huffman.
 
 Sebastian Morgado = Ha creado la compresión.
 
-Roberto Contreras = Ha creado la descompresión y la tabla de resultados.
+Roberto Contreras = Ha creado la descompresión.
 
 # Compresión de Huffman
 
@@ -33,16 +33,17 @@ La compresión de Huffman, sirve para (tal como dice su nombre), comprimir archi
 
 # Tabla con los resultados: 
 
-![alt text](https://github.com/edd-ic/taller-2-grupo2/blob/master/fotos/TABLA.png?raw=true)
+![alt text](https://github.com/seba-m/University-Projects/blob/master/Second%20year/Huffman%20Compression/fotos/TABLA.png?raw=true)
 
 # Gráfico costo:
 
-![alt text](https://github.com/edd-ic/taller-2-grupo2/blob/master/fotos/GRAFICO_costo.png?raw=true)
+![alt text](https://github.com/seba-m/University-Projects/blob/master/Second%20year/Huffman%20Compression/fotos/GRAFICO_costo.png?raw=true)
 
 # Gráfico peso original vs peso comprimido:
 
-![alt text](https://github.com/edd-ic/taller-2-grupo2/blob/master/fotos/GRAFICO_pesoO_vs_pesoC.png?raw=true)
+![alt text](https://github.com/seba-m/University-Projects/blob/master/Second%20year/Huffman%20Compression/fotos/GRAFICO_pesoO_vs_pesoC.png?raw=true)
 
 # Gráfico de la tasa de compresión:
 
-![alt text](https://github.com/edd-ic/taller-2-grupo2/blob/master/fotos/GRAFICO_tasa_de_compresion.png?raw=true)
+![alt text](https://github.com/seba-m/University-Projects/blob/master/Second%20year/Huffman%20Compression/fotos/GRAFICO_tasa_de_compresion.png?raw=true)
+
