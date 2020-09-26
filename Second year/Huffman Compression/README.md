@@ -8,7 +8,7 @@ Roberto Contreras = Ha creado la descompresión.
 
 # Compresión de Huffman
 
-La compresión de Huffman, sirve para (tal como dice su nombre), comprimir archivos, la forma en que crea la tabla puede verse explicada en el siguiente video (haga click en la imagen).
+La compresión de Huffman, sirve para (tal como dice su nombre), comprimir archivos (en este caso texto), la forma en que crea la tabla puede verse explicada en el siguiente video (haga click en la imagen).
 
 [![](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQbOGvrqlCsSLfeNyTPWAzFkE2NCh7H5ovHgw&usqp=CAU)](http://www.youtube.com/watch?v=8Gf8wutvS1w "paso a paso de huffman")
 
