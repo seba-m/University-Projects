@@ -1,0 +1,28 @@
+Autor: Sebastian Morgado.
+
+Bienvenido a mi programa, aqui está a mayor profundidad explicado como funciona el programa.
+
+Primero lo primero: El programa le permite tanto crear examenes, asi tambien resolverlos.
+
+Por el momento solo se pueden crear 2 tipos de examenes, SMR y Word/Pdf. Las diferencias se muestran a continuación:
+
+Examen SMR: Crea un archivo, en el cual puede guardar las preguntas, con sus respuestas y puntajes.
+
+	- Consta de 2 modos, el primero, con contraseña (seguro) y el segundo sin contraseña (inseguro).
+	- El alumno puede visualizar el examen usando el programa y la contraseña (si es que tiene).
+	- Los alumnos al responder el examen, se les generará un archivo, donde estan:
+		su nombre, apellido, respuestas del alumno, puntaje total, y nota (solo si es que el examen tiene contraseña).
+	- Permite analizar los resultados de los alumnos (siempre que tenga los archivos .nam guardados en una carpeta),
+		además de poder exportar los resultados del analisis en un documento excel.
+	- Con el punto anterior, usted no debe encargarse de revisar los resultados de los alumnos 1 por 1.
+	- El archivo pesa menos que el generado para word y pdf.
+
+Word/Pdf: Crea un archivo, en el cual puede guardar las preguntas y puntajes.
+
+	- No necesita guardar las respuestas en el archivo.
+	- No depende del software si desea ver el examen (para word).
+	- puede ver el examen usando el programa (para el pdf).
+	
+Que cosas NO se pueden hacer con el programa:
+
+- Guardar imagenes dentro de los archivos.
