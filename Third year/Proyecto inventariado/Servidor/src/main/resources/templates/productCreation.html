@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<title>Inventory</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+
+<!-- Favicons -->
+<link th:href="@{/assets/img/favicon.png}" rel="icon">
+<link th:href="@{/assets/img/apple-touch-icon.png}"
+	rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+	rel="stylesheet">
+
+<!-- Vendor CSS Files 
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">-->
+<link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/icofont/icofont.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/animate.css/animate.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/remixicon/remixicon.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/line-awesome/css/line-awesome.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/venobox/venobox.css}" rel="stylesheet">
+<link
+	th:href="@{/assets/vendor/owl.carousel/assets/owl.carousel.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/aos/aos.css}" rel="stylesheet">
+<!-- Template Main CSS File -->
+<link th:href="@{/assets/css/elegant-icons-style.css}" rel="stylesheet" />
+<link th:href="@{/assets/css/font-awesome.min.css}" rel="stylesheet" />
+<link th:href="@{/assets/css/all.css}" rel="stylesheet" />
+<!-- Custom styles -->
+<link th:href="@{/assets/css/style-responsive.css}" rel="stylesheet" />
+<link th:href="@{/assets/css/bootstrap-select.css}" rel="stylesheet">
+<link th:href="@{/assets/css/select2.min.css}" rel="stylesheet" />
+<link th:href="@{/assets/css/select2-bootstrap4.css}" rel="stylesheet">
+<link th:href="@{/assets/css/fileinput.min.css}" rel="stylesheet">
+<link th:href="@{/assets/css/bootstrap4-toggle.min.css}"
+	rel="stylesheet">
+<!-- Template Main CSS File-->
+<link th:href="@{/assets/css/style5.css}" rel="stylesheet">
+<link th:href="@{/assets/css/style.css}" rel="stylesheet">
+<link th:href="@{/assets/css/style3.css}" rel="stylesheet">
+<link th:href="@{/assets/css/Images.css}" rel="stylesheet" />
+<link th:href="@{/assets/css/sticky.css}" rel="stylesheet">
+<link th:href="@{/assets/css/dropzone.css}" rel="stylesheet">
+
+
+<!-- Vendor JS Files -->
+<script th:src="@{/assets/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script th:src="@{/assets/vendor/jquery.easing/jquery.easing.min.js}"></script>
+<script th:src="@{/assets/vendor/php-email-form/validate.js}"></script>
+<script th:src="@{/assets/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+<script th:src="@{/assets/vendor/venobox/venobox.min.js}"></script>
+<script th:src="@{/assets/vendor/owl.carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/assets/vendor/aos/aos.js}"></script>
+<script th:src="@{/assets/js/fontawesome.js}"></script>
+<script th:src="@{/assets/js/all.js}"></script>
+<script th:src="@{/assets/js/all.min.js}"></script>
+<script th:src="@{/assets/js/select2.full.min.js}"></script>
+<script th:src="@{/assets/js/popper.min.js}"></script>
+<script th:src="@{/assets/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap-notify.js}"></script>
+<script th:src="@{/assets/js/bootstrap4-toggle.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap-select.min.js}"></script>
+<script th:src="@{/assets/js/piexif.js}"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script th:src="@{/assets/js/fileinput.min.js}"></script>
+<script th:src="@{/assets/js/theme.js}"></script>
+<script th:src="@{/assets/js/select2.full.min.js}"></script>
+<script th:src="@{/assets/js/dropzone.js}"></script>
+
+<!-- Template Main JS File -->
+<script th:src="@{/assets/js/main2.js}"></script>
+<script th:src="@{/assets/js/login.js}"></script>
+<script th:src="@{/assets/js/functions.js}"></script>
+
+</head>
+
+<body>
+
+	<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top d-flex align-items-center ">
+		<div
+			class="container d-flex align-items-center justify-content-between">
+
+			<div class="logo">
+				<h1 class="text-light">
+					<a th:href="@{/}"
+						onclick="return confirm('You will leave this page, are you sure?')">InventarisPro</a>
+				</h1>
+			</div>
+
+			<nav class="nav-menu d-none d-lg-block">
+				<ul>
+					<li><a th:href="@{/app}">Dashboard</a></li>
+					<li class="active"><a href="#">Products</a></li>
+					<li><a th:href="@{/app/inventory/tags/}">Tags</a></li>
+					<li><span th:if="${AlertAmmount != null}"
+						th:text="${AlertAmmount}" class="badge badge-pill badge-primary"
+						style="float: right; margin-bottom: -10px; z-index: 9999;"></span>
+						<a th:href="@{/app/alerts}">Alerts</a></li>
+					<li class="navbar navbar-expand-sm navbar-dark log-in">
+						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> 
+							<img th:src="${Photo}" alt="Profile Image" class="rounded-circle" width="25px" height="25px">
+						</a>
+						<ul class="dropdown-menu dropdown-menu-edited">
+							<li><a th:href="@{/app/account}">Account</a></li>
+							<div class="dropdown-divider"></div>
+							<li><a class="dropdown-item" th:href="@{/logout}">Log out</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- .nav-menu -->
+
+		</div>
+	</header>
+	<!-- End Header -->
+
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section class="breadcrumbs">
+			<div class="container">
+
+				<div class="d-flex justify-content-between align-items-center">
+					<h2>Product creation</h2>
+					<ol>
+						<li><a th:href="@{/}"
+							onclick="return confirm('You will leave this page, are you sure?')">Home</a></li>
+						<li><a th:href="@{/app}"
+							onclick="return confirm('You will leave this page, are you sure?')">App</a></li>
+						<li><a th:href="@{/app/inventory}"
+							onclick="return confirm('You will leave this page, are you sure?')">Inventory</a></li>
+						<li>Product creation</li>
+					</ol>
+				</div>
+			</div>
+		</section>
+		<!-- End Breadcrumbs -->
+
+		<section class="inner-page">
+			<div class="container espacio-abajo">
+				<div class="row justify-content-md-center ">
+					<div class="col-sm-12">
+						<div class="tm-block">
+							<form id="submit-form" th:action="@{/app/inventory/item/new}"
+								method="post" th:object="${Producto}" class="tm-signup-form"
+								enctype="multipart/form-data">
+
+								<div class="row justify-content-around ">
+									<!-- nombre producto -->
+									<div class="col col-sm-9 espacio-izquierda">
+										<input type="text"
+											class="form-control-lg form-control product-name"
+											th:field="${Producto.nombre}" id="name" name="name"
+											placeholder="Product Name" required aria-required="true" autofocus>
+									</div>
+									<!-- botones de guardado y descarte -->
+									<div class="btn-group col ">
+										<a type="button" class="btn btn-light btn-lg"
+											th:href="@{/app/inventory}"
+											onclick="return confirm('Are you sure?')">Discard</a>
+										<button type="submit" id="submit-all"
+											class="btn btn-primary btn-lg">Save</button>
+									</div>
+								</div>
+								<div class="row ">
+									<div class="col-lg-5 ">
+										<div class="row mt-5">
+											<!-- cantidad -->
+											<div class="input-group col">
+												<input type="text" class="form-control" id="quantity"
+													name="quantity" th:field="${Producto.cantidad}"
+													th:placeholder="Quantity" min="0"
+													onkeypress="return isNumber(event)" onkeyup="calcTotal();"
+													required aria-required="true" autofocus>
+												<!-- alerta -->
+												<span class="input-group-btn">
+
+													<button type="button" id="btnAlerta"
+														class="btn btn-secondary" data-toggle="modal"
+														data-target="#modalAlertData">
+														<i id="icBtnAlerta" class="bx far fa-bell-slash bx-tada"></i>
+													</button>
+													<div class="modal fade" id="modalAlertData" tabindex="-1"
+														role="dialog" aria-hidden="true">
+														<div class="modal-dialog modal-dialog-centered"
+															role="document">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLongTitle">
+																		<i class="far fa-bell"></i> Notification Settings
+																	</h5>
+																</div>
+																<div class="modal-body">
+																	<h6>Notify me when quantity amount is:</h6>
+																	<div class="row">
+																		<div class="col-7">
+																			<select id="minLvlOption" class="form-control"
+																				th:field="${Producto.minLvlOption}">
+																				<option th:value="0" selected>Select
+																					option...</option>
+																				<option th:value="1">Less than (&lt;)</option>
+																				<option th:value="2">Less than or equal
+																					(&le;)</option>
+																				<option th:value="3">Greater than (&gt;)</option>
+																				<option th:value="4">Greater than or equal
+																					(&ge;)</option>
+																			</select>
+																		</div>
+																		<div class="col-5">
+																			<input type="text" class="form-control" id="lvlMin"
+																				name="lvlMin" th:field="${Producto.minLvl}"
+																				placeholder="Min Level" autofocus min="0"
+																				onkeypress="return isNumber(event)"
+																				title="Set a minimum level to easily identify low stock items. Item will be highlighted when its quantity is at or below min level.">
+																		</div>
+																	</div>
+																</div>
+																<div class="modal-footer justify-content-between">
+																	<button id="deleteButtonModal" type="button"
+																		class="btn btn-link text-nowrap" data-dismiss="modal">Delete
+																		alert</button>
+																	<div class="btn-group" role="group"
+																		aria-label="Basic example">
+																		<button id="cancelButtonModal" type="button"
+																			class="btn btn-light" data-dismiss="modal">Cancel</button>
+																		<button id="saveButtonModal" type="button"
+																			class="btn btn-primary" data-dismiss="modal">Add
+																			Alert</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+												</span>
+											</div>
+
+											<!-- precio -->
+											<div class="col-3 padding-0">
+												<input type="text" class="form-control" id="price"
+													name="price" th:field="${Producto.precio}" min="0"
+													onkeypress="return isNumber(event)" placeholder="Price $"
+													onkeyup='calcTotal();' required aria-required="true" autofocus>
+											</div>
+											<!-- valor total -->
+											<div class="col">
+												<input type="text" class="form-control" id="total"
+													name="total" min="0" placeholder="Total value $" disabled>
+											</div>
+
+											<input type="hidden" th:id="minLvlEnabled"
+												th:name="minLvlEnabled" th:value="false">
+
+										</div>
+										<div class="row mt-3">
+											<!-- tags -->
+											<div class="form-group col-lg-12 ">
+												<select class="form-control tags"
+													th:field="${Producto.tags}" id="tags" multiple
+													style="width: 100%">
+													<option th:each="tags : ${AllTags}" th:value="${tags.id}"
+														th:text="${tags.nombre}">Tag</option>
+												</select>
+											</div>
+										</div>
+										<div class="row mt-3">
+											<!-- descripcion producto -->
+											<div class="form-group col-lg-12 ">
+												<textarea class="form-control" id="descripcion"
+													name="descripcion" th:field="${Producto.descripcion}"
+													rows="5" placeholder="Product description or notes."></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-7  mt-5">
+										<div class="container">
+											<div class="main_view pintar">
+												<img id="main_image" class="img-responsive mx-auto d-block"
+													style="max-width: auto" alt="please upload a image below."
+													th:src="@{/assets/img/image-add-line-pls-upload.png}">
+											</div>
+											<div class="preview-images-zone side_view dropzone"
+												id="previews">
+												<div id="template" class="preview-image">
+													<div class="image-cancel delete" data-dz-remove>
+														<i class="bx bx-trash"></i>
+													</div>
+													<div class="preview">
+														<img data-dz-thumbnail width="90px" height="90px" alt="" />
+													</div>
+												</div>
+												<div class="form-group end">
+													<span class="fileinput-button dz-clickable"
+														data-toggle="tooltip" id="photoButton"> <img
+														alt="button to upload files." width="90px" height="90px"
+														th:src="@{/assets/img/image-add-line.svg}">
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<!-- End #main -->
+
+	<!-- ======= Footer ======= -->
+	<footer class="footer" id="footer">
+		<div class="container">
+			<h3>InventarisPro</h3>
+			<p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis
+				magni eligendi fuga maxime saepe commodi placeat.</p>
+			<div class="social-links">
+				<a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> <a
+					href="#" class="facebook"><i class="bx bxl-facebook"></i></a> <a
+					href="#" class="instagram"><i class="bx bxl-instagram"></i></a> <a
+					href="#" class="google-plus"><i class="bx bxl-skype"></i></a> <a
+					href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+			</div>
+			<div class="copyright">
+				&copy; Copyright <strong><span>InventarisPro</span></strong>. All
+				Rights Reserved
+			</div>
+			<div class="credits">Designed by BootstrapMade</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+
+	<a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+
+	<script th:src="@{/assets/js/ImagesPC.js}"></script>
+</body>
+
+</html>

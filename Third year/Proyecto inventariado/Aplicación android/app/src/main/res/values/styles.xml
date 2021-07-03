@@ -1,0 +1,6 @@
+<resources>
+
+    <style name="MenuItemTextAppearance" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <item name="textAllCaps">false</item>
+    </style>
+</resources>

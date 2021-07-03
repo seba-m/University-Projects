@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".activity.ForgotActivity">
+
+    <ImageButton
+        android:id="@+id/boton_back_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="23dp"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_arrow"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="134dp"
+        app:srcCompat="@drawable/caja"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="23dp"
+            android:background="@null"
+            android:textColorHint="@color/textcolor">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:drawableStart="@drawable/ic_email_icon"
+                android:drawableLeft="@drawable/ic_email_icon"
+                android:drawablePadding="15dp"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/textcolor"
+                android:textColorHint="@color/textcolor"
+                android:textSize="16sp"
+                tools:ignore="ContentDescription" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/line_view" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/boton_enviar_mail"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_rounded"
+            android:text="@string/action_send_mail"
+            android:textAllCaps="false"
+            android:textColor="@color/miniTitleColor" />
+
+    </LinearLayout>
+
+</RelativeLayout>

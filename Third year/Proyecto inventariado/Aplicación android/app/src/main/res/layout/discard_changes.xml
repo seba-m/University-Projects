@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
+    android:orientation="vertical"
+    android:showDividers="middle"
+    app:cardCornerRadius="15dp"
+    app:cardPreventCornerOverlap="true"
+    card_view:cardElevation="10dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/card_recent_product_text_name"
+            style="@style/MyTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_discard_changes"
+            android:textAlignment="textStart"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/card_recent_product_text_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:paddingTop="15dp"
+            android:text="@string/body_discard_changes"
+            android:textAlignment="textStart"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <Button
+                android:id="@+id/boton_cancelar_cambios"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/text_shadow_white"
+                android:text="@string/button_cancel_discard_changes"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/boton_descartar_cambios"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/button_discard_discard_changes"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:backgroundTint="#708FB3" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

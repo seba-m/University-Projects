@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context=".activity.CreateProductActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_product"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/PopupOverlay">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bSaveProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:hint="@string/save_product"
+            app:icon="@drawable/ic_product_add"
+            app:iconGravity="end" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ViewSwitcher
+                android:id="@+id/switch_new_product_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:measureAllChildren="false">
+
+                <RelativeLayout
+                    android:id="@+id/add_photos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/dotted_border"
+                    android:clickable="true"
+                    android:elevation="8dp"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="190dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables,UselessParent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_add_image"
+                            app:tint="@color/text_shadow"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="@string/add_photos"
+                            android:textColor="@color/text_shadow" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <!---->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="400dp"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:layout_margin="10dp"
+                        android:elevation="8dp"
+                        android:orientation="vertical"
+                        android:showDividers="middle"
+                        app:cardCornerRadius="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        card_view:cardElevation="10dp">
+
+                        <ImageView
+                            android:id="@+id/image_slider"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_products_missing_image"
+                            tools:ignore="ContentDescription" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/previewImages"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginEnd="1dp" />
+
+                </LinearLayout>
+
+            </ViewSwitcher>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp">
+
+                <EditText
+                    android:id="@+id/txt_product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/product_name"
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="#e5e5e5"
+                    android:columnCount="2"
+                    android:horizontalSpacing="1dp"
+                    android:orientation="horizontal"
+                    android:verticalSpacing="1dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="0"
+                        android:layout_columnSpan="1"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="#fff"
+                        android:gravity="start"
+                        android:orientation="vertical"
+                        android:padding="1dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="start"
+                            android:text="@string/product_quantity"
+                            android:textSize="@dimen/valueSelector_label_text" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="start"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/valueQuantity"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginTop="4dp"
+                                android:background="@android:color/transparent"
+                                android:enabled="true"
+                                android:gravity="start"
+                                android:hint="@string/cero"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/valueSelector_text">
+
+                            </EditText>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/darker_gray" />
+
+                                <ImageButton
+                                    android:id="@+id/alarma_new_product"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="6dp"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:background="@android:color/transparent"
+                                    android:src="@drawable/ic_bell_disabled"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="1dp"
+                        android:background="#fff"
+                        android:gravity="start"
+                        android:orientation="vertical"
+                        android:padding="1dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="1dp"
+                            android:gravity="start"
+                            android:text="@string/product_price"
+                            android:textSize="@dimen/valueSelector_label_text" />
+
+                        <EditText
+                            android:id="@+id/valuePrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@android:color/transparent"
+                            android:ems="6"
+                            android:enabled="true"
+                            android:gravity="start"
+                            android:hint="@string/cero"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/valueSelector_text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_columnSpan="2"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="#fff"
+                        android:gravity="start"
+                        android:orientation="vertical"
+                        android:padding="1dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="start"
+                            android:text="@string/total_value"
+                            android:textSize="@dimen/valueSelector_label_text" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/valueTotalValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:backgroundTint="@color/white"
+                                android:ems="18"
+                                android:gravity="start"
+                                android:importantForAutofill="no"
+                                android:text="@string/cero"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/valueSelector_text" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_columnSpan="2"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginEnd="1dp"
+                        android:background="#fff"
+                        android:gravity="start"
+                        android:orientation="vertical"
+                        android:padding="1dp">
+
+                        <com.seba.inventariado.utils.TagCompletionView
+                            android:id="@+id/TagCompletion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:autoLink="all"
+                            android:background="@null"
+                            android:hint="@string/add_tags" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_columnSpan="2"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="#ffffff"
+                        android:gravity="start"
+                        android:orientation="vertical"
+                        android:padding="1dp">
+
+                        <Button
+                            android:id="@+id/etDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:autoLink="all"
+                            android:background="@null"
+                            android:gravity="start|center"
+                            android:hint="@string/decription"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp"
+                            android:textAllCaps="false"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+                </GridLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

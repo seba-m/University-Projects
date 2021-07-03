@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:showDividers="middle"
+    app:cardCornerRadius="4dp"
+    tools:context=".activity.AlertsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/card_alarm_image"
+            android:layout_width="95dp"
+            android:layout_height="109dp"
+            android:src="@drawable/ic_products_missing_image"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:theme="@style/Theme.MaterialComponents">
+
+            <TextView
+                android:id="@+id/card_alarm_text_name"
+                style="@style/MyTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:maxLines="2"
+                android:layout_marginBottom="11dp"
+                android:gravity="start"
+                android:textAlignment="textStart"
+                android:textSize="17sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/card_alarm_text_message"
+                style="@style/MyTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:maxLines="2"
+                android:textAlignment="textStart"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/alarm_boton_editar"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_productos_edit" />
+
+            <Button
+                android:id="@+id/alarm_boton_borrar"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_productos_delete" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

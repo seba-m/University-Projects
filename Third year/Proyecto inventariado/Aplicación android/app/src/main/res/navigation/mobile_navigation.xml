@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_dashboard">
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.seba.inventariado.activity.DashboardFragment"
+        android:label="@string/menu_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_productos"
+        android:name="com.seba.inventariado.activity.ProductListFragment"
+        android:label="@string/menu_products"
+        tools:layout="@layout/fragment_products" />
+
+    <fragment
+        android:id="@+id/nav_tags"
+        android:name="com.seba.inventariado.activity.TagFragment"
+        android:label="@string/menu_tags"
+        tools:layout="@layout/fragment_alerts" />
+</navigation>

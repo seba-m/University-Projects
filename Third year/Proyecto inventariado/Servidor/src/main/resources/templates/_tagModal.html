@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<!-- Modal -->
+	<form th:fragment="changeTagName(tag)"
+		th:action="@{'/app/inventory/tags/edit/' + ${tag.id}}" method="post"
+		class="tm-signup-form">
+		<div class="text-end">
+			<input type="button" class="btn btn-primary"
+				th:id="'button-'+${tag.id}" data-toggle="modal"
+				th:attr="data-target=|#modal-${tag.id}|" style="display: none;"></input>
+			<div class="modal fade" th:id="'modal-'+${tag.id}" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalCenterTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Change
+								tag name</h5>
+						</div>
+						<div class="modal-body">
+							<input type="text"
+								class="form-control-lg form-control product-name" id="tag"
+								name="tag" th:placeholder="${tag.nombre}" required autofocus>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-primary">Change</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

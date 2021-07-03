@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "trust.store",
+    "type": "java.lang.String",
+    "description": "A description for 'trust.store'"
+  },
+  {
+    "name": "trust.store",
+    "type": "java.lang.String",
+    "description": "A description for 'trust.store'"
+  },
+  {
+    "name": "webServerUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'webServerUrl'"
+  },
+  {
+    "name": "webServerUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'webServerUrl'"
+  },
+  {
+    "name": "webServerUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'webServerUrl'"
+  }
+]}

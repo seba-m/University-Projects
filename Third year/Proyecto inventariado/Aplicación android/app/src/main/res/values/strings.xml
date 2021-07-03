@@ -1,0 +1,162 @@
+<resources>
+    <!--<string name="serverURL">https://10.0.0.100:8080/</string>
+    <string name="productPhotosURL">https://10.0.0.100:8080/img/product-photos/%1$s/%2$s/%3$s</string>-->
+    <string name="serverURL">https://inventarispro.herokuapp.com/</string>
+    <string name="productPhotosURL">https://inventarispro.s3.amazonaws.com/product-photos/%1$s/%2$s/%3$s</string>
+
+    <string name="app_name">InventarisPro</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="crear_cuenta">Sign up for Free</string>
+    <string name="olvido_contra">Forgot password?</string>
+    <string name="no_cuenta">New to InventarisPro?</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="app_no_disponible">"Esta app no esta diseñada para este tipo de dispositivos."</string>
+    <!-- Strings related to Register -->
+    <string name="registrarse">Register</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="action_sign_up">Sign up</string>
+
+    <string name="action_send_mail">Send email</string>
+    <string name="action_login_here">Login here</string>
+    <string name="action_cuenta_recordada">Did you remember the password?</string>
+    <string name="action_cuenta_registrada">Already registered?</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Username</string>
+    <string name="nav_header_subtitle">Email</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_dashboard">Dashboard</string>
+    <string name="menu_products">Items</string>
+    <string name="menu_tags">Tags</string>
+    <string name="user">User</string>
+    <string name="alerts">Alerts</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+
+    <string name="dashboard_items">Items</string>
+    <string name="dashboard_tags">Tags</string>
+    <string name="dashboard_quantity">Total Quantity</string>
+    <string name="dashboard_value">Total value</string>
+
+    <string name="logout">Logout</string>
+    <string name="default_dashboard_value">0</string>
+    <string name="default_dashboard_value_ammount">$ 0</string>
+
+    <string name="invalid_tag">Invalid Tag</string>
+    <string name="no_tag">No Tag Found</string>
+    <string name="product_money_card">%1$s $</string>
+
+    <string name="product_name">Enter Product Name</string>
+    <string name="product_price">Price</string>
+    <string name="product_quantity">Quantity</string>
+    <string name="product_min_lvl">Min Level</string>
+    <string name="product_add_tags">Add tags</string>
+    <string name="product_tags_empty">No tags</string>
+    <string name="product_add_description">Add Description</string>
+    <string name="product_description">Product description or notes.</string>
+    <string name="cero">0</string>
+
+    <string name="valueSelector_label">Adjust Quantity</string>
+    <string name="valueBarLabel">CURRENT VALUE</string>
+
+    <string name="add_tags">Add Tags</string>
+    <string name="type_tags">Type Tag</string>
+    <string name="decription">Description</string>
+    <string name="add_decription">Type description</string>
+    <string name="tags_disponibles">Available Tags</string>
+
+    <string name="add_product_title">Add product</string>
+    <string name="edit_product_title">Edit product</string>
+    <string name="save_product">Save</string>
+    <string name="done">Done</string>
+
+    <string name="invalid_product">Name, Price and Quantity are required.</string>
+
+    <string name="no_product_1">Awww Snap!</string>
+    <string name="no_product_2">There is no item here, try adding one in the (+) button above.</string>
+
+    <string name="total_value">Total Value</string>
+
+    <string name="alarm_title">Min Level</string>
+    <string name="alarm_notification_title">Notification Settings</string>
+    <string name="alarm_notification_body">Notify me when quantity amount is:</string>
+    <string name="alarm_button_delete">Delete alert</string>
+    <string name="alarm_button_cancel">Cancel</string>
+    <string name="alarm_button_add">Add Alert</string>
+    <string-array name="spinner_alarm_values">
+        <item>Select option…</item>
+        <item>Less than (&lt;)</item>
+        <item>Less than or equal (≤)</item>
+        <item>Greater than (&gt;)</item>
+        <item>Greater than or equal (≥)</item>
+    </string-array>
+
+    <string name="inventory_summary">INVENTORY SUMMARY</string>
+    <string name="recent_items">RECENT ITEMS</string>
+    <string name="no_items">No items.</string>
+    <string name="inventarispro">InventarisPro</string>
+
+    <string name="money_format">$ %1$s</string>
+
+    <string name="title_discard_changes">Discard changes?</string>
+    <string name="body_discard_changes">Are you sure you want to discard your changes?</string>
+    <string name="button_cancel_discard_changes">Cancel</string>
+    <string name="button_discard_discard_changes">Discard</string>
+
+    <string name="sort_by">Sort by</string>
+    <string name="sort_by_name">Name</string>
+    <string name="sort_by_update">Last Updated</string>
+    <string name="sort_by_alarm">Last Alert</string>
+    <string name="sort_by_quantity">Quantity</string>
+    <string name="sort_by_value">Value</string>
+
+    <string name="change_quantity">Change Quantity</string>
+    <string name="new_quantity">New Quantity</string>
+    <string name="update">Update</string>
+    <string name="add_photos">Add photos</string>
+
+    <string name="alarm_message_0">Unknown error</string>
+    <string name="alarm_message_1">Quantity is below than <b>%1$s</b></string>
+    <string name="alarm_message_2">Quantity is below or equal to <b>%1$s</b></string>
+    <string name="alarm_message_3">Quantity is greater to <b>%1$s</b></string>
+    <string name="alarm_message_4">Quantity is greater or equal <b>%1$s</b></string>
+
+    <string name="tag_missing_message">Click add new tag to get started!</string>
+    <string name="add_tag">Add new tag</string>
+    <string name="search_tag">Search tags</string>
+    <string name="tag_name">Tag Name</string>
+    <string name="add">Add</string>
+    <string name="error_search">Nothing to see here</string>
+    <string name="change_tag_name">Change tag name</string>
+    <string name="change">Change</string>
+    <string name="enter_text">Enter text to start your search.</string>
+    <string name="edit">Edit</string>
+    <string name="done_edit">Done</string>
+
+    <string name="delete_title">Delete confirmation</string>
+    <string name="delete_dialog">You are going to delete this item, are you sure?</string>
+    <string name="delete">Delete</string>
+    <string name="log_out">Log Out</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="password">Password</string>
+    <string name="new_password">New Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="advanced_settings">ADVANCED SETTINGS</string>
+    <string name="password_section">PASSWORD SECTION</string>
+    <string name="basic_details">BASIC DETAILS</string>
+    <string name="new_password_repeated">New Password Repeated</string>
+</resources>
