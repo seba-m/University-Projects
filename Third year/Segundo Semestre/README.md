@@ -38,3 +38,5 @@
 - Html
 ---
 <a name="nota">1.-</a> Optimización del stock: es un proceso cuyo objetivo es lograr la máxima disponibilidad del inventario con la mínima inversión en stock.
+
+pd: Con este proyecto pasamos de curso.
