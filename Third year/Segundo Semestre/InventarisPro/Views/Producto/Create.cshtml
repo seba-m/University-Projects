@@ -1,0 +1,200 @@
+﻿@model InventarisPro.Modelo.ViewModels.Producto.ProductoViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+@section styles{
+
+<link rel="stylesheet" href="~/css/productos.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+}
+
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Crear producto</h1>
+</div>
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+<form asp-action="Create" class="row g-5 needs-validation" method="post" enctype="multipart/form-data">
+    <div class="col-md-7">
+        <div class="row g-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-6">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input id="name" asp-for="Nombre" class="form-control" required>
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 ">
+                <label asp-for="IdCategoria" class="control-label"></label>
+                <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.IdCategoria" required></select>
+                <span asp-validation-for="IdCategoria" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Stock" class="control-label"></label>
+                <input id="stock" asp-for="Stock" class="form-control" required>
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 ">
+                <label asp-for="CantidadMinima" class="control-label">Reabastecer en</label>
+                <div class="input-group">
+                    <input id="cant-min" asp-for="CantidadMinima" class="form-control" value="0" min="0" readonly>
+                    <div class="input-group-append">
+                        <button type="button" id="btnAlerta" class="btn btn-outline-secondary">
+                            <i id="icBtnAlerta" class="fa fa-bell-slash bx-tada"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="AlarmaActivada" name="AlarmaActivada" value="false">
+
+            <div class="col-md-6">
+                <label asp-for="PrecioCosto" class="control-label"></label>
+                <input id="precio-costo" asp-for="PrecioCosto" class="form-control" required>
+                <span asp-validation-for="PrecioCosto" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PrecioVenta" class="control-label"></label>
+                <input id="precio-venta" asp-for="PrecioVenta" class="form-control" required>
+                <span asp-validation-for="PrecioVenta" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="FechaVencimiento" class="control-label"></label>
+                <input type="date" asp-for="FechaVencimiento" class="form-control input-append date" />
+                <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="UnidadMedida" class="control-label"></label>
+                <input asp-for="UnidadMedida" class="form-control" />
+                <span asp-validation-for="UnidadMedida" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <textarea asp-for="Descripcion" class="form-control" id="validationTextarea" placeholder="Sirve para ..."></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-12">
+                <label asp-for="Foto" class="control-label"></label>
+                <input class="form-control" asp-for="Foto" accept="image/png, image/jpg, image/jpeg" type='file' id="imgInp">
+
+            </div>
+            <div class="col-12 mt-4">
+                <div class="img-edit">
+                    <img id="blah" src="~/img/product-default.png" alt="your image" />
+                </div>
+                <span asp-validation-for="Foto" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4 mb-5">
+        <input type="submit" value="Crear Producto" class="btn btn-success me-4" />
+        <a class="btn btn-danger" id="go" type="button" asp-action="Index">Regresar</a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="#myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-danger">¡Aviso!</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3>Hay campos llenos!!!</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a asp-action="Index" type="button" class="btn btn-warning">Volver sin guardar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    <script>
+
+        $('#go').click(function() {
+            var campos = [ $('#name'),$('#stock'),$('#cant-min'),$('#precio-costo'),$('#precio-venta')];
+            for(i = 0; i < campos.length; i++){
+                if(campos[i].val().length > 0){
+                    if(campos[i].val() == '0'){
+                        return true
+                    }
+                    else{
+                        $('#\\#myModal').modal('show');
+                        return false
+                    }
+                }
+            }
+        });
+
+
+        imgInp.onchange = evt => {
+        const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+
+	    $("#btnAlerta").click(function() {
+            if ($("#AlarmaActivada").val() == 'false') {
+                $("#AlarmaActivada").val("true");
+                $("#cant-min").prop("readonly", false);
+                $("#cant-min").val("0");
+                $("#icBtnAlerta").removeClass("fa-bell-slash").addClass("fa-bell");
+                $("#btnAlerta").removeClass("btn-outline-primary").addClass("btn-info");
+            } else {
+                $("#cant-min").val("0");
+		        $("#AlarmaActivada").val("false");
+                $("#cant-min").prop("readonly", true);
+		        $("#icBtnAlerta").removeClass("fa-bell").addClass("fa-bell-slash");
+		        $("#btnAlerta").removeClass("btn-info").addClass("btn-outline-secondary");
+            }
+	    });
+
+
+
+        $('#quantity').on("cut copy paste", function(e) {
+	        e.preventDefault();
+        });
+        $('#minlevel').on("cut copy paste", function(e) {
+	        e.preventDefault();
+        });
+        $('#price').on("cut copy paste", function(e) {
+	        e.preventDefault();
+        });
+
+        function isNumber(evt) {
+	        evt = (evt) ? evt : window.event;
+	        var charCode = (evt.which) ? evt.which : evt.keyCode;
+	        if ((charCode < 48 || charCode > 57)) {
+		        return false;
+	        }
+	        return true;
+        }
+
+        function addCommas(number) {
+	        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        }
+
+        function calcTotal() {
+	        var priceVal = document.getElementById("price").value;
+	        var quantityVal = document.getElementById("quantity").value;
+	        if ((priceVal != null && priceVal > 0) && (quantityVal != null && quantityVal > 0)) {
+		        document.getElementById('total').value = (addCommas(priceVal * quantityVal));
+	        } else {
+		        document.getElementById('total').value = '';
+	        }
+        }
+    </script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

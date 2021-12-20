@@ -1,0 +1,179 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject InventarisPro.Proveedores.Repositorios.ITrabajadorRepository foto
+@inject IConfiguration config
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - InventarisPro</title>
+    <!--Boxicons library-->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/normalize.css" />
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+    @RenderSection("styles", false)
+
+
+</head>
+<body>
+    <div class="sidebar active">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxs-box'></i>
+                <div class="logo_name">Inventaris Pro</div>
+
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <a asp-area="" asp-controller="Dashboard" asp-action="Index">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Resumen</span>
+
+                </a>
+                <span class="tooltip" id="tooltip">Resumen</span>
+            </li>
+            @*<li>
+                <a>
+                <i class='bx bx-search search'></i>
+                <input type="text" placeholder="Buscar Producto" />
+                </a>
+                <span class="tooltip" id="tooltip1">Buscar</span>
+                </li>*@
+            <li>
+                <a asp-area="" asp-controller="Producto" asp-action="Index">
+                    <i class='bx bxs-package'></i>
+                    <span class="links_name">Productos</span>
+                </a>
+                <span class="tooltip" id="tooltip2">Productos</span>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Historial" asp-action="Index">
+                    <i class='bx bx-history'></i>
+                    <span class="links_name">Historial</span>
+                </a>
+                <span class="tooltip" id="tooltip3">Historial</span>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Venta" asp-action="Index">
+                    <i class='bx bx-cart-alt'></i>
+                    <span class="links_name">Ventas</span>
+                </a>
+                <span class="tooltip" id="tooltip4">Ventas</span>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Alarma" asp-action="Index">
+                    <i class='bx bx-bell'></i>
+                    @if (ViewBag.CantidadAlarmas > 0)
+                    {
+                        var cantidadAlarmas = ViewBag.CantidadAlarmas;
+                        var cantidad = (ViewBag.CantidadAlarmas > 9) ? "9+" : cantidadAlarmas;
+                        <span class="badge badge-pill badge-primary" style="margin-top:-20px;margin-left:-20px; display:block;">@cantidad</span>
+                    }
+                    <span class="links_name">Alarmas</span>
+                </a>
+                <span class="tooltip" id="tooltip5">Alarmas</span>
+            </li>
+            @if (@User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Role).Value != "2")
+            {
+                <li>
+                    <a asp-area="" asp-controller="Trabajador" asp-action="Index">
+                        <i class='bx bx-user-plus'></i>
+                        <span class="links_name">Trabajadores</span>
+                    </a>
+                    <span class="tooltip" id="tooltip6">Trabajadores</span>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Optimizar" asp-action="Index">
+                        <i class='bx bx-heart'></i>
+                        <span class="links_name">Optimizar</span>
+                    </a>
+                    <span class="tooltip" id="tooltip7">Optimizar</span>
+                </li>
+            }
+            <li>
+                <a asp-area="" asp-controller="Account" asp-action="Profile">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Perfil</span>
+                </a>
+                <span class="tooltip" id="tooltip8">Perfil</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    @{
+                        var t = await foto.GetCurrentTrabajador();
+                        if (t != null && !String.IsNullOrEmpty(t.Foto))
+                        {
+                            <img src="@string.Concat(string.Format(config["AWSS3:UrlUser"], t.IdNegocio, t.Rut), '?', DateTime.Now.ToString())" alt="your image" />
+                        }
+                        else
+                        {
+                            <img src="~/img/user-default.png" alt="your image" />
+                        }
+                    }
+
+                    <div class="name_job">
+                        <div class="name">@User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Name).Value</div>
+                        <div class="job">
+                            @switch (@User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Role).Value)
+                            {
+                                case "1":
+                                    <text> Jefe </text>
+                                    break;
+                                case "2":
+                                    <text> Empleado </text>
+                                    break;
+                                case "3":
+                                    <text> Administrador </text>
+                                    break;
+                            }
+                        </div>
+
+
+                    </div>
+                </div>
+                <a asp-area="" asp-controller="Account" asp-action="Logout">
+                    <i class='bx bx-log-out' id="log_out"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="home_content">
+        <div class=container>
+            <div class="row">
+                <div class="col align-self-center">
+                    @RenderBody()
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script language="javascript" charset="utf-8" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/r-2.2.9/sc-2.0.5/datatables.min.js"></script>
+
+
+    <script>
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let tooltip = document.querySelectorAll(".tooltip");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

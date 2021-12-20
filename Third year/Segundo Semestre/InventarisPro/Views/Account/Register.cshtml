@@ -1,0 +1,82 @@
+@model InventarisPro.Modelo.ViewModels.Trabajador.TrabajadorRegisterViewModel
+
+@{
+    Layout = "_LayoutEmpty";
+}
+
+
+<div class="container-fluid bg">
+    <div class="col-6 mx-auto">
+        <div class="form-container-register">
+            <form method="POST" class="container">
+                <div class="logo_content mb-3"> 
+                    <div class="logo">
+                        <i class='bx bxs-box'></i>
+                        <div class="logo_name">Inventaris Pro</div>
+                    </div>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="Rut" class="control-label">Rut</label>
+                    <input asp-for="Rut" class="form-control" placeholder="12345678-9" required/>
+                    <span asp-validation-for="Rut" class="text-danger"></span>
+                </div>
+    
+                <div class="mb-3">
+                    <label asp-for="Correo" class="control-label">Correo</label>
+                    <input asp-for="Correo" class="form-control" type="email" placeholder="ejemplo@dominio.com" required/>
+                    <span asp-validation-for="Correo" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Contrasena" class="control-label">Contraseña</label>
+                    <input asp-for="Contrasena" class="form-control" type="password" placeholder="********" required/>
+                    <span asp-validation-for="Contrasena" class="text-danger"></span>
+                </div>
+            
+                <div class="row justify-content-center mb-3">
+                    <div class="col">
+                        <label asp-for="Nombre" class="control-label">Nombre</label>
+                        <input asp-for="Nombre" class="form-control" required />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="Apellido" class="control-label">Apellido</label>
+                        <input asp-for="Apellido" class="form-control" />
+                    </div>
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <div class="col">
+                        <label asp-for="FechaNacimiento" class="control-label">Fecha de Nacimiento</label>
+                        <input asp-for="FechaNacimiento" class="form-control" type="date" required/>
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="Telefono" class="control-label">Teléfono</label>
+                        <input asp-for="Telefono" class="form-control" type="tel" maxlength="15" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label asp-for="NombreNegocio" class="control-label">Nombre de su Negocio</label>
+                        <input asp-for="NombreNegocio" class="form-control" required />
+                        <span asp-validation-for="NombreNegocio" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="TipoNegocio" class="control-label">Tipo de su negocio</label>
+                        <select id="TipoNegocio" name="TipoNegocio" class="form-control" required>
+                            <option selected="selected" value="1">Abarrotes</option>
+                            <option value="2">Ropa</option>
+                            <option value="3">Maquillaje</option>
+                        </select>
+                        <span asp-validation-for="TipoNegocio" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mb-3">
+                    <button class="btn btn-success btn-block" type="submit">Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

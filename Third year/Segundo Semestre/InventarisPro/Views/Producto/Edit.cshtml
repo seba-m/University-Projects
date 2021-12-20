@@ -1,0 +1,197 @@
+﻿@model InventarisPro.Modelo.ViewModels.Producto.ProductoViewModelEdit
+
+@{
+    ViewData["Title"] = "Edit";
+    String? data = ViewData["img"] as String;
+
+}
+
+@section styles{
+
+<link rel="stylesheet" href="~/css/productos.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+}
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Editar Producto</h1>
+    <div class="d-flex align-items-center">
+        <a class="btn btn-danger" role="button" asp-action="Index">Cancelar</a>
+    </div>
+</div>
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+<form asp-action="Edit" class="row g-5 needs-validation" enctype="multipart/form-data">
+    <div class="col-md-7">
+        <div class="row g-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-6">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" required>
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 ">
+                <label asp-for="IdCategoria" class="control-label"></label>
+                <select asp-for="IdCategoria" class="form-select" asp-items="ViewBag.IdCategoria" required></select>
+                <span asp-validation-for="IdCategoria" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Stock" class="control-label"></label>
+                <input asp-for="Stock" class="form-control" required>
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="CantidadMinima" class="control-label">Reabastecer en</label>
+                <div class="input-group">
+                    
+                    @if (Model.CantidadMinima != null && Model.CantidadMinima > 0)
+                    {
+                        <input id="cant-min" asp-for="CantidadMinima" class="form-control" min="0" >
+                    }
+                    else
+                    {
+                        <input id="cant-min" asp-for="CantidadMinima" class="form-control" min="0" value="0" readonly>
+                    }
+                    <div class="input-group-append">
+                        @if (Model.AlarmaActivada == true)
+                        {
+                            <button type="button" id="btnAlerta" class="btn btn-outline-secondary btn-info">
+                                <i id="icBtnAlerta" class="fa bx-tada fa-bell"></i>
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" id="btnAlerta" class="btn btn-outline-secondary">
+                                <i id="icBtnAlerta" class="fa fa-bell-slash bx-tada"></i>
+                            </button>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" asp-for="AlarmaActivada" value="@Model.AlarmaActivada">
+
+            <div class="col-md-6">
+                <label asp-for="PrecioCosto" class="control-label"></label>
+                <input asp-for="PrecioCosto" class="form-control" />
+                <span asp-validation-for="PrecioCosto" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PrecioVenta" class="control-label"></label>
+                <input asp-for="PrecioVenta" class="form-control" />
+                <span asp-validation-for="PrecioVenta" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="FechaVencimiento" class="control-label"></label>
+                <input asp-for="FechaVencimiento" class="form-control" />
+                <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="UnidadMedida" class="control-label"></label>
+                <input asp-for="UnidadMedida" class="form-control" />
+                <span asp-validation-for="UnidadMedida" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <textarea asp-for="Descripcion" class="form-control" id="validationTextarea" placeholder="Sirve para ..."></textarea>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <input type="submit" value="Actualizar" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-12">
+                <label asp-for="Foto" class="control-label"></label>
+                <input class="form-control" asp-for="Foto" accept="image/png, image/jpg, image/jpeg" name="Foto" type='file' id="imgInp">
+
+            </div>
+            <div class="col-12 mt-4">
+                <div class="img-edit">
+                    @if (data != null)
+                    {
+                        <img id="blah" src="@data" alt="your image" />
+                    }
+                    else
+                    {
+                        <img id="blah" src="~/img/product-default.png" alt="your image" />
+                    }
+                </div>
+                <span asp-validation-for="Foto" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+<script>
+    imgInp.onchange = evt => {
+    const [file] = imgInp.files
+        if (file) {
+            blah.src = URL.createObjectURL(file)
+        }
+    }
+
+    $("#btnAlerta").click(function() {
+        if ($("#AlarmaActivada").val() == 'false' || $("#AlarmaActivada").val() == 'False') {
+            $("#AlarmaActivada").val("true");
+            $("#cant-min").prop("readonly", false);
+            $("#cant-min").val("0");
+            $("#icBtnAlerta").removeClass("fa-bell-slash").addClass("fa-bell");
+            $("#btnAlerta").removeClass("btn-outline-primary").addClass("btn-info");
+        } else {
+            $("#cant-min").val("0");
+            $("#AlarmaActivada").val("false");
+            $("#cant-min").prop("readonly", true);
+            $("#icBtnAlerta").removeClass("fa-bell").addClass("fa-bell-slash");
+            $("#btnAlerta").removeClass("btn-info").addClass("btn-outline-secondary");
+        }
+    });
+
+
+
+    $('#quantity').on("cut copy paste", function(e) {
+        e.preventDefault();
+    });
+    $('#minlevel').on("cut copy paste", function(e) {
+        e.preventDefault();
+    });
+    $('#price').on("cut copy paste", function(e) {
+        e.preventDefault();
+    });
+
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if ((charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+    function addCommas(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
+
+    function calcTotal() {
+        var priceVal = document.getElementById("price").value;
+        var quantityVal = document.getElementById("quantity").value;
+        if ((priceVal != null && priceVal > 0) && (quantityVal != null && quantityVal > 0)) {
+            document.getElementById('total').value = (addCommas(priceVal * quantityVal));
+        } else {
+            document.getElementById('total').value = '';
+        }
+    }
+</script>
+
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

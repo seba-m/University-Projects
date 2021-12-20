@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Dashboard</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+<!-- Favicons -->
+<link th:href="@{/assets/img/favicon.png}" rel="icon">
+<link th:href="@{/assets/img/apple-touch-icon.png}"
+	rel="apple-touch-icon">
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+<!-- Vendor CSS Files -->
+<link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/icofont/icofont.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/animate.css/animate.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/remixicon/remixicon.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/line-awesome/css/line-awesome.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/venobox/venobox.css}" rel="stylesheet">
+<link
+	th:href="@{/assets/vendor/owl.carousel/assets/owl.carousel.min.css}"
+	rel="stylesheet">
+<link th:href="@{/assets/vendor/aos/aos.css}" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/assets/css/fontawesome.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/fullcalendar.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/tooplate.css}">
+<!-- Template Main CSS File -->
+<link th:href="@{/assets/css/style.css}" rel="stylesheet">
+<link th:href="@{/assets/css/style5.css}" rel="stylesheet">
+<link th:href="@{/assets/css/sticky.css}" rel="stylesheet">
+
+</head>
+<body>
+	<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top d-flex align-items-center ">
+		<div
+			class="container d-flex align-items-center justify-content-between">
+			<div class="logo">
+				<h1 class="text-light">
+					<a th:href="@{/}">InventarisPro</a>
+				</h1>
+				<!-- Uncomment below if you prefer to use an image logo -->
+				<!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+			</div>
+			<nav class="nav-menu d-none d-lg-block">
+				<ul>
+					<li class="active"><a href="#">Dashboard</a></li>
+					<li><a th:href="@{/app/inventory}">Products</a></li>
+					<li><a th:href="@{/app/inventory/tags/}">Tags</a></li>
+					<li><span th:if="${AlertAmmount != null}"
+						th:text="${AlertAmmount}" class="badge badge-pill badge-primary"
+						style="float: right; margin-bottom: -10px; z-index: 9999;"></span>
+						<a th:href="@{/app/alerts}">Alerts</a></li>
+					<li class="navbar navbar-expand-sm navbar-dark log-in"><a
+						class="nav-link dropdown-toggle" href="#"
+						data-bs-toggle="dropdown"> <!-- <i class="fa ri-settings-5-line bx-spin"></i> -->
+							<img th:src="${Photo}"
+							alt="Profile Image" class="img-responsive rounded-circle"
+							width="25px" height="25px">
+					</a>
+						<ul class="dropdown-menu dropdown-menu-edited">
+							<li><a th:href="@{/app/account}">Account</a></li>
+							<div class="dropdown-divider"></div>
+							<li><a class="dropdown-item" th:href="@{/logout}">Log
+									out</a></li>
+						</ul></li>
+
+				</ul>
+			</nav>
+			<!-- .nav-menu -->
+		</div>
+	</header>
+	<!-- End Header -->
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section class="breadcrumbs">
+			<div class="container">
+				<div class="d-flex justify-content-between align-items-center">
+					<h2>Dashboard</h2>
+					<ol>
+						<li><a th:href="@{/}">Home</a></li>
+						<li>Dashboard</li>
+					</ol>
+				</div>
+			</div>
+		</section>
+		<!-- End Breadcrumbs -->
+		<section class="inner-page">
+			<div class="container">
+				<div class="row mt-5 mb-5 tm-content-row">
+					<h3>Inventory summary</h3>
+					<div class="col-lg-3">
+						<div class="card text-center">
+							<div class="card-body">
+								<i class="ri-file-fill ri-2x"></i>
+								<h1 class="resize-text" th:text="${{itemAmmount}}"
+									style="font-size: 2vw;"></h1>
+								<p>Items</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="card text-center">
+							<div class="card-body">
+								<i class="ri-price-tag-3-fill ri-2x"></i>
+								<h1 class="resize-text" th:text="${{tagsAmmount}}"
+									style="font-size: 2vw;"></h1>
+								<p>Tags</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="card text-center">
+							<div class="card-body">
+								<i class="ri-stack-fill ri-2x"></i>
+								<h1 class="resize-text" th:text="${{stockAmmount}}"
+									style="font-size: 2vw;"></h1>
+								<p>Total Quantity</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="card text-center">
+							<div class="card-body">
+								<i class="ri-money-dollar-box-fill ri-2x"></i>
+								<h1 class="resize-text" th:text="'$' + ${{totalAmmount}}"
+									style="font-size: 2vw;"></h1>
+								<p>Total value</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<!-- End #main -->
+	<!-- ======= Footer ======= -->
+	<footer class="footer" id="footer">
+		<div class="container">
+			<h3>InventarisPro</h3>
+			<p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis
+				magni eligendi fuga maxime saepe commodi placeat.</p>
+			<div class="social-links">
+				<a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> <a
+					href="#" class="facebook"><i class="bx bxl-facebook"></i></a> <a
+					href="#" class="instagram"><i class="bx bxl-instagram"></i></a> <a
+					href="#" class="google-plus"><i class="bx bxl-skype"></i></a> <a
+					href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+			</div>
+			<div class="copyright">
+				&copy; Copyright <strong><span>InventarisPro</span></strong>. All
+				Rights Reserved
+			</div>
+			<div class="credits">Designed by BootstrapMade</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+	<a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+	<!-- Vendor JS Files -->
+	<script th:src="@{/assets/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/assets/js/jquery-3.5.1.min.js}"></script>
+	<script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/assets/vendor/jquery.easing/jquery.easing.min.js}"></script>
+	<script th:src="@{/assets/vendor/php-email-form/validate.js}"></script>
+	<script th:src="@{/assets/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+	<script th:src="@{/assets/vendor/venobox/venobox.min.js}"></script>
+	<script th:src="@{/assets/vendor/owl.carousel/owl.carousel.min.js}"></script>
+	<script th:src="@{/assets/vendor/aos/aos.js}"></script>
+	<script th:src="@{/assets/js/moment.min.js}"></script>
+	<script th:src="@{/assets/js/utils.js}"></script>
+	<script th:src="@{/assets/js/Chart.min.js}"></script>
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<script th:src="@{/assets/js/tooplate-scripts.js}"></script>
+	<script th:src="@{/assets/js/jquery.fittext.js}"></script>
+	<!-- Template Main JS File -->
+	<script th:src="@{/assets/js/main2.js}"></script>
+	<script th:src="@{/assets/js/nav-bar.js}"></script>
+	<script th:src="@{/assets/js/text-resize.js}"></script>
+</body>
+</html>

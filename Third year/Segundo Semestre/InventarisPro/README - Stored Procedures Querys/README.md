@@ -1,0 +1,1 @@
+Estas son las consultas usadas para crear los stored procedures.

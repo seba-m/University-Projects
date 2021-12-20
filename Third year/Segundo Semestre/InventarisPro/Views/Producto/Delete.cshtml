@@ -1,0 +1,127 @@
+﻿@model InventarisPro.Modelo.Entidades.Producto
+
+@{
+    ViewData["Title"] = "Delete";
+    String? data = ViewData["img"] as String;
+}
+
+
+
+@section styles{
+
+    <link rel="stylesheet" href="~/css/productos.css"/>
+}
+
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Eliminar producto</h1>
+</div>
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+<form class="row g-5 needs-validation">
+        <div class="col-md-7">
+            <div class="row g-3">
+                <div class="col-md-12 mt-4">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label ">@Html.DisplayNameFor(model => model.Nombre):</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.Nombre)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label ">Categoría:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.IdCategoria)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label ">@Html.DisplayNameFor(model => model.Stock):</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.Stock)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Reabastecer en:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.CantidadMinima)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label ">Precio de compra:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.PrecioCosto)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Precio de venta:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.PrecioVenta)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Fecha de vencimiento:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.FechaVencimiento)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Unidad de medida:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.UnidadMedida)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Descripción:</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" rows="3" disabled>@Html.DisplayFor(model => model.Descripcion)</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-12">
+                    <label class="control-label">Imagen del Producto:</label>                    
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="img-edit border border-2">  
+                        @if (data != null)
+                        {
+                            <img id="blah" src="@data" alt="your image" />
+                        }
+                        else
+                        {
+                            <img id="blah" src="~/img/product-default.png" alt="your image" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+
+<div class="mt-4">
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdProducto" />
+        <input type="submit" value="Eliminar producto" class="btn btn-danger" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+    @*<a class="btn btn-danger" role="button" asp-action="Index">Volver a la lista</a>*@
+</div>

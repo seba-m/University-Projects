@@ -1,0 +1,95 @@
+﻿@model InventarisPro.Modelo.Entidades.Trabajador
+
+@{
+    ViewData["Title"] = "Details";
+    String? data = ViewData["img"] as String;
+}
+@section styles{
+
+    <link rel="stylesheet" href="~/css/productos.css"/>
+}
+
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Detalles del trabajador</h1>
+</div>
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+<form class="row g-5 needs-validation">
+        <div class="col-md-7">
+            <div class="row g-3">
+                <div class="col-md-12 mt-4">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label ">@Html.DisplayNameFor(model => model.Nombre):</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.Nombre)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label ">Apellido:</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.Apellido)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label ">@Html.DisplayNameFor(model => model.Rut):</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.Rut)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Rut Jefe:</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.SuperRut)" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label ">Fecha de nacimiento:</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="inputEmail3" value="@Model.FechaNacimiento!.ToString("dd/MM/yyyy")" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Telefono:</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="inputEmail3" value="@Html.DisplayFor(model => model.Telefono)" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-12">
+                    <label class="control-label">Imagen del Usuario:</label>                    
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="img-edit border border-2">
+                    @if (data != null)
+                    {
+                        <img id="blah" src="@data" alt="your image" />
+                    }
+                    else
+                    {
+                        <img id="blah" src="~/img/user-default.png" alt="your image" />
+                    }           
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+
+<div class="mt-4">
+    <a class="btn btn-danger" role="button" asp-action="Index">Volver a la lista</a>
+</div>

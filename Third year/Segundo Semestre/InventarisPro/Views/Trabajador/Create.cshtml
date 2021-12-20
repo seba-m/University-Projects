@@ -1,0 +1,143 @@
+﻿@model InventarisPro.Modelo.ViewModels.Trabajador.TrabajadorEmployCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+@section styles{
+
+<link rel="stylesheet" href="~/css/productos.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+}
+
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Agregar empleado</h1>
+
+</div>
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+<form asp-action="Create" class="row g-5 needs-validation" method="post" enctype="multipart/form-data">
+    <div class="col-md-7">
+        <div class="row g-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Nombre" class="control-label">Nombre</label>
+                    <input asp-for="Nombre" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="form-group">
+                    <label asp-for="Apellido" class="control-label">Apellido</label>
+                    <input asp-for="Apellido" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Correo" class="control-label">Correo</label>
+                    <input asp-for="Correo" class="form-control" type="email" />
+                    <span asp-validation-for="Correo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="form-group">
+                    <label asp-for="Contrasena" class="control-label">Contraseña</label>
+                    <input asp-for="Contrasena" class="form-control" type="password" placeholder="********" />
+                    <span asp-validation-for="Contrasena" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Rut" class="control-label">Rut</label>
+                    <input asp-for="Rut" class="form-control" />
+                    <span asp-validation-for="Rut" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Telefono" class="control-label">Teléfono</label>
+                    <input asp-for="Telefono" class="form-control" type="tel"/>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="FechaNacimiento" class="control-label">Fecha de Nacimiento</label>
+                    <input asp-for="FechaNacimiento" class="form-control" type="date" />
+                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-12">
+                <label asp-for="Foto" class="control-label"></label>
+                <input class="form-control" asp-for="Foto" accept="image/png, image/jpg, image/jpeg" type='file' id="imgInp">
+
+            </div>
+            <div class="col-12 mt-4">
+                <div class="img-edit">
+                    <img id="blah" src="~/img/user-default.png" alt="your image" />
+                </div>
+                <span asp-validation-for="Foto" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4 mb-5">
+        <input type="submit" value="Agregar empleado" class="btn btn-success me-4" />
+        <a class="btn btn-danger" id="go" type="button" asp-action="Index">Regresar</a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="#myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-danger">¡Aviso!</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3>Hay campos llenos!!!</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a asp-action="Index" type="button" class="btn btn-warning">Volver sin guardar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    <script>
+
+        $('#go').click(function() {
+            var campos = [ $('#name'),$('#stock'),$('#cant-min'),$('#precio-costo'),$('#precio-venta')];
+            for(i = 0; i < campos.length; i++){
+                if(campos[i].val().length > 0){
+                    if(campos[i].val() == '0'){
+                        return true
+                    }
+                    else{
+                        $('#\\#myModal').modal('show');
+                        return false
+                    }
+                }
+            }
+        });
+
+
+        imgInp.onchange = evt => {
+        const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

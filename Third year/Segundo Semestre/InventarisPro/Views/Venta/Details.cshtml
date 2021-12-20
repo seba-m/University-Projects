@@ -1,0 +1,118 @@
+﻿@model IEnumerable<InventarisPro.Modelo.Entidades.Detalle>
+
+@{
+    ViewData["Title"] = "Details";
+}
+@section styles
+{  
+
+   <style>
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff !important;
+        background-color: #157347 !important;
+        border-color: #157347 !important;
+    }
+
+    .page-link{
+        position: relative;
+        display: block;
+        color: #157347 !important;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    </style>
+}
+
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h2 class="mt-0 mb-0">Venta #@Html.DisplayFor(modelItem => Model!.First()!.IdVenta)</h2>
+    <div class="d-flex align-items-center">
+        <a role="button" asp-action="Index" class="btn btn-secondary ">Regresar</a>
+    </div>
+</div>
+
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+<table id="tabla_detalle_venta" class="table table table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadVendida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioTotalVentaProducto)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model!) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantidadVendida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioTotalVentaProducto)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.IdNegocioNavigation.IdNegocio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProductoNavigation.IdProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdVentaNavigation.IdVenta)
+            </td>*@
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+
+
+@section scripts{
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+
+
+        <script>
+
+            $(document).ready( function () {
+                $('#tabla_detalle_venta').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                        },
+                        "searching": false,
+                        "bSort" : false,
+                        "columnDefs": [{
+                            "className": "dt-center",
+                            "targets": "_all"
+                        }]              
+                    });
+            } );
+        </script>
+    }

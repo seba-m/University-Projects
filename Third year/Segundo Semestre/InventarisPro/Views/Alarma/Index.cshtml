@@ -1,0 +1,124 @@
+﻿@model IEnumerable<InventarisPro.Modelo.ViewModels.Alarma.Alarma>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section styles
+{
+   <link rel="stylesheet" href="~/css/productos.css" />
+   
+   <style>
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff !important;
+        background-color: #157347 !important;
+        border-color: #157347 !important;
+    }
+
+    .page-link{
+        position: relative;
+        display: block;
+        color: #157347 !important;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    </style>
+}
+
+
+  <div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Alarmas</h1>
+  </div>
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table id="tabla_productos" class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                   Id del Producto
+                </th>
+                <th>
+                   Nombre del Producto
+                </th>
+                <th>
+                   Categoria
+                </th>
+                <th>
+                   Razón Alarma
+                </th>
+                <th>
+                   Fecha Alarma
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCategoria)
+            </td>
+            <td>
+                Producto con bajo Stock.
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaAlarma)
+            </td>
+            <td>
+                <a class="btn btn-warning" role="button" href="/Producto/Edit/@item.IdProducto"><i class="bx bx-edit-alt"></i></a>
+                <a class="btn btn-secondary" role="button" href="/Producto/Details/@item.IdProducto"><i class='bx bx-detail'></i></a> 
+                <a class="btn btn-danger" role="button" href="/Producto/Delete/@item.IdProducto"><i class='bx bx-trash' ></i></a>
+            </td>
+        </tr>
+    }
+        </tbody>
+    </table>
+
+    
+    @section scripts{
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+
+
+        <script>
+
+            $(document).ready( function () {
+                $('#tabla_productos').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                    }
+                });
+            } );
+
+        </script>
+    }
+
+}
+else
+{
+	<div class="text-center">
+		<span class="iconify" data-icon="mdi:clock-check-outline"
+			data-inline="false" data-width="180"></span>
+		<h2>Todo ok!</h2>
+		<p>Por ahora no hay ninguna alerta activada.</p>
+	</div>
+
+    @section Scripts{
+        <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+    }
+}

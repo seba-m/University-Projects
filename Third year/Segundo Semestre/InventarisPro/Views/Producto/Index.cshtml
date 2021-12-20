@@ -1,0 +1,139 @@
+﻿@model IEnumerable<InventarisPro.Modelo.Entidades.Producto>
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration config
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section styles
+{
+   <link rel="stylesheet" href="~/css/productos.css" />
+   
+   <style>
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff !important;
+        background-color: #157347 !important;
+        border-color: #157347 !important;
+    }
+
+    .page-link{
+        position: relative;
+        display: block;
+        color: #157347 !important;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    </style>
+}
+
+
+  <div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Mis Productos</h1>
+    @if (@User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Role).Value != "2")
+    {
+        <div class="d-flex align-items-center">
+            <a role="button" asp-action="Create" class="btn btn-success btn-lg" type="submit">+ Agregar Producto</a>
+        </div>
+    }
+  </div>
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table id="tabla_productos" class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                   @*@Html.DisplayNameFor(model => model.Nombre)*@ 
+                   Producto
+                </th>
+                <th>
+                   @*@Html.DisplayNameFor(model => model.Stock)*@ 
+                   Cantidad Disponible
+                </th>
+                <th>
+                   @*@Html.DisplayNameFor(model => model.PrecioCosto)*@ 
+                   Precio de Costo
+                </th>
+                <th>
+                   @*@Html.DisplayNameFor(model => model.PrecioVenta)*@
+                   Precio de Venta
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @if (String.IsNullOrEmpty(item.Foto)){
+                    <img class="img-producto me-3" src="/img/product-default.png" alt="Foto de producto">
+                }else{
+                    <img class="img-producto me-3" src="@string.Format(config["AWSS3:UrlProduct"], item.IdNegocio, item.IdProducto)" alt="your image" />
+                }        
+                @Html.DisplayFor(modelItem => item.Nombre)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioCosto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                <a class="btn btn-secondary" role="button" asp-action="Details" asp-route-id="@item.IdProducto"><i class='bx bx-detail'></i></a> 
+                @if (@User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Role).Value != "2")
+                {
+                    <a class="btn btn-warning" role="button" asp-action="Edit" asp-route-id="@item.IdProducto"><i class='bx bx-edit-alt'></i></a> 
+                    <a class="btn btn-danger" role="button" asp-action="Delete" asp-route-id="@item.IdProducto"><i class='bx bx-trash' ></i></a>
+                }
+            </td>
+        </tr>
+    }
+        </tbody>
+    </table>
+
+    
+    @section scripts{
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+
+
+        <script>
+
+            $(document).ready( function () {
+                $('#tabla_productos').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                    }
+                });
+            } );
+
+        </script>
+    }
+
+}
+else
+{
+    <div class="text-center">
+        <span class="iconify" data-icon="system-uicons:box-open"
+			data-inline="false" data-width="180"></span>
+        <h2>Aww Snap!</h2>
+        <p>No tienes ningún producto agregado, intenta agregar uno con el botón "+" de arriba.</p>
+    </div>
+
+    @section Scripts{
+        <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+    }
+}

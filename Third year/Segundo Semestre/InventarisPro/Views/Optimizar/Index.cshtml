@@ -1,0 +1,214 @@
+﻿@{
+    ViewData["Title"] = "Optimizar";
+    Layout = "_Layout";
+}
+@section styles{
+
+<link rel="stylesheet" href="~/css/productos.css" />
+}
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Optimizar Stock</h1>
+
+</div>
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="col-md-12 shadow p-3 mb-5 bg-body rounded">
+            <div>
+                <h4>Optimice sus ventas</h4>
+            </div>
+            <hr class="bg-dark border-2 border-top border-dark">
+            <div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label">Fecha 1</label>
+                        <input id="date1" type="date" class="form-control input-append date" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label">Fecha 2</label>
+                        <input id="date2" type="date" class="form-control input-append date" />
+                    </div>
+                    <div class="col-4 d-flex justify-content-center">
+                        <button id="boton" type="button" class="btn btn-success">Optimizar Stock</button>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-4">
+                        <label class="control-label">Coste Inventario</label>
+                        <input id="costeInventario" class="form-control input-append" value="0" disabled />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label">Ganancia Bruta</label>
+                        <input id="gananciaBruta" class="form-control input-append" value="0" disabled/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label">Ganancia Neta</label>
+                        <input id="gananciaNeta" class="form-control input-append" value="0" disabled/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <table id="tabla_productos" class="table table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Id Producto
+                </th>
+                <th>
+                    Nombre Producto
+                </th>
+                <th>
+                    Stock ideal
+                </th>
+                <th>
+                    Coste total del stock
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+
+@section Scripts {
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+
+    $(document).ready( function () {
+       var t = $('#tabla_productos').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                    },
+                    "searching": false,
+                    "bSort" : false,
+                    "columnDefs": [{
+                        "className": "dt-center",
+                        "targets": "_all"
+                    }]
+                });
+
+        $.fn.dataTable.ext.errMode = 'none';
+
+        var respuesta;
+
+
+        $('#boton').click( function() {
+            $.ajax({
+                async: false,
+                    type: "GET",
+                    url: '/Optimizar/VentaPorCategorias/',
+                    data: jQuery.param({ date1: $("#date1").val(), date2 : $("#date2").val()}) ,
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    success: function (response) {
+
+                        if (response){
+                            var jsonObject = JSON.parse(response);
+                            if (jsonObject) {
+                                $('#tabla_productos').DataTable().rows().remove().draw();
+                                var len = jsonObject.Productos.length;
+                                if (len > 0) {
+                                    var productos = jsonObject.Productos;
+                                    var individuos = jsonObject.individuo;
+                                    var valorInventario = 0;
+                                    var gananciaBruta = 0;
+                                    var gananciaNeta = 0;
+                                    for (var i = 0; i < len; i++) {
+                                        let IdProducto, Nombre, StockRecomendado, CostoTotalStock;
+
+                                        if (productos[i].IdProducto) {
+                                            IdProducto = productos[i].IdProducto;
+                                        } else {
+                                            IdProducto = '';
+                                        }
+
+                                        if (productos[i].Nombre) {
+                                            Nombre = productos[i].Nombre;
+                                        } else {
+                                            Nombre = '';
+                                        }
+
+                                        if (individuos[i]) {
+                                            StockRecomendado = individuos[i];
+                                        } else {
+                                            StockRecomendado = '';
+                                        }
+
+                                        if (individuos[i] && productos[i]) {
+                                            CostoTotalStock = individuos[i] * productos[i].PrecioVenta;
+                                        } else {
+                                            CostoTotalStock = '0';
+                                        }
+                                        t.row.add([
+                                            IdProducto,
+                                            Nombre,
+                                            StockRecomendado,
+                                            CostoTotalStock
+                                        ]).draw( false );
+                                        $('#tabla_productos').DataTable().columns.adjust().draw();
+                                    
+                                        valorInventario += (individuos[i] * productos[i].PrecioCosto);
+
+                                        gananciaBruta += (individuos[i] * (productos[i].PrecioVenta));
+
+                                        gananciaNeta += (individuos[i] * (productos[i].PrecioVenta - productos[i].PrecioCosto));
+                                    }
+                                    $('#costeInventario').val(valorInventario);
+                                    $('#gananciaBruta').val(gananciaBruta);
+                                    $('#gananciaNeta').val(gananciaNeta);
+                                } else {
+                                    $('#costeInventario').val(0);
+                                    $('#gananciaBruta').val(0);
+                                    $('#gananciaNeta').val(0);
+                                    table.one('draw', function () {
+                                        $('#tabla_productos tbody td').text("Parece que no hay items para optimizar.");
+                                    });
+                                    $('#tabla_productos').DataTable().columns.adjust().draw();
+                                }
+                            } else {
+                                    $('#costeInventario').val(0);
+                                    $('#gananciaBruta').val(0);
+                                    $('#gananciaNeta').val(0);
+                                $('#tabla_productos').DataTable().rows().remove().draw();
+                                    $('#tabla_productos tbody td').one('draw', function () {
+                                        $('#tabla_productos tbody td').text("Parece que no hay items para optimizar.");
+                                    });
+                                $('#tabla_productos').DataTable().columns.adjust().draw();
+                            }
+                        } else {
+                                    $('#costeInventario').val(0);
+                                    $('#gananciaBruta').val(0);
+                                    $('#gananciaNeta').val(0);
+                                $('#tabla_productos').DataTable().rows().remove().draw();
+                                $('#tabla_productos tbody td').one('draw', function () {
+                                    $('#tabla_productos tbody td').text("Parece que no hay items para optimizar.");
+                                });
+                                $('#tabla_productos').DataTable().columns.adjust().draw();
+                            }
+                    },
+                    error: function () {
+                                    $('#costeInventario').val(0);
+                                    $('#gananciaBruta').val(0);
+                                    $('#gananciaNeta').val(0);
+                                $('#tabla_productos').DataTable().rows().remove().draw();
+                                    $('#tabla_productos tbody td').one('draw', function () {
+                                        $('#tabla_productos tbody td').text("Parece que no hay items para optimizar.");
+                                    });
+                                $('#tabla_productos').DataTable().columns.adjust().draw();
+                    }
+            });
+        });
+
+    });
+
+</script>
+}

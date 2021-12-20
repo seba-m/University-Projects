@@ -1,0 +1,142 @@
+@model InventarisPro.Modelo.ViewModels.Trabajador.TrabajadorUpdateViewModel
+
+@{
+    ViewData["Title"] = "Perfil";
+    String? data = ViewData["img"] as String;
+}
+
+@section styles{
+
+    <link rel="stylesheet" href="~/css/perfil.css"/>
+
+}
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Perfil</h1>
+    @*<div class="d-flex align-items-center">
+        <a role="button" asp-action="Create" class="btn btn-success">Detalle de venta</a>
+    </div>*@
+</div>
+
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+<form method="POST" class="row" enctype="multipart/form-data">
+    <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <div class="img-edit">
+                                    @if (data != null)
+                                    {
+                                        <img id="blah" src="@data" alt="your image" />
+                                    }
+                                    else
+                                    {
+                                        <img id="blah" src="~/img/default.png" alt="your image" />
+                                    }
+                                </div>
+                                <span asp-validation-for="Foto" class="text-danger"></span>
+                            </div>
+                            <h5 class="user-name">@Model.Nombre @Model.Apellido</h5>
+                            <h6 class="user-email">@Model.Correo</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Detalles personales</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="Nombre" class="control-label">Nombre</label>
+                                <input asp-for="Nombre" class="form-control" placeholder="@Model.Nombre" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="Apellido" class="control-label">Apellido</label>
+                                <input asp-for="Apellido" class="form-control" placeholder="@Model.Apellido" />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="Correo" class="control-label">Correo</label>
+                                <input asp-for="Correo" class="form-control" type="email" placeholder="@Model.Correo" />
+                                <span asp-validation-for="Correo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="Contrasena" class="control-label">Contraseña</label>
+                                <input asp-for="Contrasena" class="form-control" type="password" placeholder="********" />
+                                <span asp-validation-for="Contrasena" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="Rut" class="control-label">Rut</label>
+                                <input asp-for="Rut" class="form-control" placeholder="@Model.Rut" readonly/>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="Telefono" class="control-label">Teléfono</label>
+                                <input asp-for="Telefono" class="form-control" type="tel" placeholder="@Model.Telefono"/>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="FechaNacimiento" class="control-label">Fecha de Nacimiento</label>
+                                <input asp-for="FechaNacimiento" class="form-control" readonly  type="date" />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="NombreNegocio" class="control-label">Nombre de su Negocio</label>
+                                <input asp-for="NombreNegocio" class="form-control" readonly placeholder="@Model.NombreNegocio" />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="Foto" class="control-label"></label>
+                                <input class="form-control" asp-for="Foto" accept="image/png, image/jpg, image/jpeg" name="Foto" type='file' id="imgInp">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="text-right mt-4">
+                                <input type="submit" value="Actualizar" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        imgInp.onchange = evt => {
+        const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
+
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

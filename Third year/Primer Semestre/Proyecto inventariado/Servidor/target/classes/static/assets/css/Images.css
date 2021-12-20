@@ -1,0 +1,142 @@
+.preview-images-zone {
+	width: 100%;
+	border: 1px solid #ddd;
+	min-height: 100px;
+	max-height: 120px;
+	display: flex;
+	padding: 5px 5px 0px 5px;
+	position: relative;
+	overflow: auto;
+}
+
+/*.preview-images-zone>.preview-image:first-child {
+	height: 185px;
+	width: 185px;
+	position: relative;
+	margin-right: 5px;
+}*/
+.preview-images-zone>.preview-image {
+	height: 96px;
+	width: 96px;
+	position: relative;
+	margin-right: 5px;
+	float: left;
+	margin-bottom: 5px;
+}
+
+.preview-images-zone>.preview-image>.image-zone {
+	width: 100%;
+	height: 100%;
+}
+
+.preview-images-zone>.preview-image>.image-zone>img {
+	width: 100%;
+	height: 100%;
+}
+
+.preview-images-zone>.preview-image>.tools-edit-image {
+	position: absolute;
+	z-index: 100;
+	color: #fff;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 10px;
+	display: none;
+}
+
+.preview-images-zone>.preview-image>.image-cancel {
+	font-size: 18px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-weight: bold;
+	margin-right: 10px;
+	cursor: pointer;
+	display: none;
+	z-index: 100;
+}
+
+.preview-image:hover>.image-zone {
+	cursor: move;
+	opacity: .5;
+}
+
+.preview-image:hover>.tools-edit-image, .preview-image:hover>.image-cancel
+	{
+	display: block;
+}
+
+.ui-sortable-helper {
+	width: 90px !important;
+	height: 90px !important;
+}
+
+.testimonial-group>.row {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.testimonial-group>.row>.col-xs-4 {
+	display: inline-block;
+	float: none;
+}
+
+.main_view {
+	width: 100%; /*80%*/
+	height: 30rem;
+}
+
+.main_view img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.side_view {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.side_view img {
+	cursor: pointer;
+}
+
+.img-responsive {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.end {
+	order: 1;
+}
+
+#drop-area {
+	border: 1px dashed #007bff;
+	border-radius: 20px;
+	padding: 20px;
+	min-height: 400px;
+	width: 100%;
+	position: relative;
+}
+
+#drop-area:before {
+	content: "Drop your image files here.";
+	position: absolute;
+	left: 50%;
+	width: 300px;
+	margin-left: -150px;
+	margin-top: -10px;
+	top: 50%;
+	height: 20px;
+}
+
+.dropzone {
+	width: 100%;
+	padding: 10px !important;
+	min-height: 100px !important;
+}

@@ -1,0 +1,268 @@
+﻿@model IList<InventarisPro.Modelo.ViewModels.Detalle.DetalleViewModel>
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Detalle de venta</h1>
+    @*<div class="d-flex align-items-center">
+        <a role="button" asp-action="Create" class="btn btn-success">Detalle de venta</a>
+    </div>*@
+</div>
+
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+        <input role="button" class="btn btn-success" value="+ Agregar Producto" onclick="addRow('dataTable')" />
+        <input role="button" class="btn btn-danger" value="Eliminar Seleccionados" onclick="deleteRow('dataTable')" />
+        @*<h1 class="mt-0 mb-0">Detalle de venta</h1>
+        <div class="d-flex align-items-center">
+            <a role="button" asp-action="Create" class="btn btn-success">Detalle de venta</a>
+        </div>*@
+    </div>
+        
+
+
+	<table id="dataTable" style="width: 100%;" class="table nowrap">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th style='width: 30%;'>Nombre Producto</th>
+                <th>Cantidad Vendida</th>
+                <th>Precio de Venta</th>
+                <th>Importe Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+			    <td><input type="checkbox"/></td>
+			    <td>
+                    <select class="form-control" data-val="true" id="IdProducto" name="[i].IdProducto" data-val-required="* Obligatorio" asp-items="ViewBag.IdProducto" onchange="cambiarPrecio(this);">
+                        <option selected disabled hidden>Elija un producto</option>
+					</select>
+                    <span class="text-danger field-validation-valid" data-valmsg-for="IdProducto" data-valmsg-replace="true"></span>
+			    </td>
+			    <td><input type="number" class="form-control" data-val="true" data-val-required="* Obligatorio" id="CantidadVendida" name="[i].CantidadVendida" value="1" onkeyup="calcularTotal(this);"></td>
+                <td><input type="number" class="form-control" data-val="true" data-val-required="* Obligatorio" id="PrecioVenta" name="[i].PrecioVenta" value="1" readonly></td>
+                <td><input type="number" class="form-control" data-val="true" id="Importe" name="[i].Importe" value="1" readonly></td>
+		    </tr>
+        </tbody>
+	</table>
+
+    <div class="row">
+        <div class="col-md-8">
+        </div>  
+        <div class="col-md-4">
+            <div class="row g-5 ">
+                <div class="col-md-12">
+                    <div class="row mt-3 mb-4">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label fw-bold">TOTAL:</label>
+                        <div class="col-sm-10">
+                            <input id="Total" name="Total" class="form-control" disabled="" type="number" value="1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <div class="d-flex justify-content-end bd-highlight mb-3">
+        
+        <a type="button" class="btn btn-secondary me-4" id="go" asp-action="Index">Regresar</a>
+        <input type="submit" value="Agregar Venta" class="btn btn-success" onclick="guardar(event);"/>
+
+        
+        <div class="modal fade" id="#myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title text-danger">¡Aviso!</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h3>Hay campos llenos!!!</h3>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a asp-action="Index" type="button" class="btn btn-warning">Volver sin guardar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script> 
+        $(document).ready( function () {
+                $('#dataTable').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                        },
+                        "searching": false,
+                        "paging": false,
+                        "info": false,
+                        "bSort" : false
+                        
+                    });
+        } );
+
+        $('#go').click(function() {
+            var selects = document.querySelectorAll("#IdProducto");
+            for(i=0;i<selects.length;i++) {
+                var select = selects[i];
+                if(select.selectedIndex != 0) {
+                    $('#\\#myModal').modal('show');
+                    return false;
+                }
+            }
+        });
+
+        var productos = JSON.parse('@Html.Raw(Json.Serialize(@ViewBag.Productos))');
+
+        function getnum(t){
+            if(isNumeric(t)){
+                return parseInt(t,10);
+            }
+            return 0;
+        }
+
+        function isNumeric(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        function cambiarPrecio(hijo){
+            var padre = hijo.parentNode.parentNode;
+            console.log(hijo.value);
+            let obj = productos.find(o => o.idProducto == hijo.value);
+            padre.querySelector("#PrecioVenta").value = obj.precioVenta;
+            padre.querySelector("#PrecioVenta").text = obj.precioVenta;
+            padre.querySelector("#Importe").value = obj.precioVenta;
+            padre.querySelector("#Importe").text = obj.precioVenta;
+            actualizarTotal();
+        }
+
+        function actualizarTotal(){
+            var sum1 = 0;
+
+            $("#dataTable tbody tr").find("td:eq(4)").each(function(){
+                sum1 += getnum(this.childNodes[0].value);
+            });
+
+            $("#Total").val(sum1);
+        }
+
+        $("#dataTable").on('change', 'input', function () {
+            actualizarTotal();
+        });
+
+        function guardar(e){
+            
+            var selects = document.querySelectorAll("#IdProducto");
+            var values = [];
+            for(i=0;i<selects.length;i++) {
+                var select = selects[i];
+                if(values.indexOf(select.value)>-1) {
+                    alert("Hay productos duplicados.");
+                    e.preventDefault();
+                    return;
+                }
+                else values.push(select.value);
+            }
+            actualizarNombres();
+        }
+
+        function actualizarNombres() {
+            var idProducto = document.querySelectorAll('#IdProducto');
+            for (var i = 0; i < idProducto.length; i++) idProducto[i].name = idProducto[i].name.replace('[i]','[' + i + ']');
+
+            var cantidadVendida = document.querySelectorAll('#CantidadVendida');
+            for (var i = 0; i < cantidadVendida.length; i++) cantidadVendida[i].name = cantidadVendida[i].name.replace('[i]','[' + i + ']');
+
+            var precioVenta = document.querySelectorAll('#PrecioVenta');
+            for (var i = 0; i < precioVenta.length; i++) precioVenta[i].name = precioVenta[i].name.replace('[i]','[' + i + ']');
+
+            var importe = document.querySelectorAll('#Importe');
+            for (var i = 0; i < importe.length; i++) importe[i].name = importe[i].name.replace('[i]','[' + i + ']');
+        }
+
+        function calcularTotal(hijo){
+            var padre = hijo.parentNode.parentNode;
+            var q=padre.querySelector("#CantidadVendida").value;
+            var p=padre.querySelector("#PrecioVenta").value;
+            var result="";
+
+            if(q!=="" && p!=="" && $.isNumeric(q) && $.isNumeric(p)){
+                result = parseFloat(q)*parseFloat(p);
+            }
+            padre.querySelector("#Importe").value = result;
+        }
+
+        function addRow(tableID) {
+
+            var table = document.getElementById(tableID);
+
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+
+            var colCount = table.rows[0].cells.length;
+
+            for(var i=0; i<colCount; i++) {
+
+                var newcell	= row.insertCell(i);
+
+                newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+
+                if (newcell.childNodes[0].type == "number") {
+                    newcell.childNodes[0].value = 1;
+                    //console.log(newcell.childNodes[0].name);
+                } else if (newcell.childNodes[0].type == "checkbox") {
+                    newcell.childNodes[0].checked = false;
+                } else if (newcell.childNodes[1].type == "select-one") {
+                    newcell.childNodes[1].selectedIndex = 0;
+                    //console.log(newcell.childNodes[1].name);
+                }
+            }
+            actualizarTotal();
+        }
+
+        function deleteRow(tableID) {
+            try {
+                var table = document.getElementById(tableID);
+                var rowCount = table.rows.length;
+
+                for(var i=1; i<rowCount; i++) {
+                    var row = table.rows[i];
+                    var chkbox = row.cells[0].childNodes[0];
+                    if(null != chkbox && true == chkbox.checked) {
+                        if(rowCount <= 2) {
+                            alert("Cannot delete all the rows.");
+                            break;
+                        }
+                        table.deleteRow(i);
+                        rowCount--;
+                        i--;
+                        actualizarTotal();
+                    }
+                }
+            }catch(e) {
+                alert(e);
+            }
+        }
+    </script>
+}

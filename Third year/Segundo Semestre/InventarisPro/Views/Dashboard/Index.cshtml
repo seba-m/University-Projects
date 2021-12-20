@@ -1,0 +1,316 @@
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+@section styles{
+
+    <link rel="stylesheet" href="~/css/productos.css"/>
+}
+<div class="d-flex justify-content-between bd-highlight mb-4 mt-4">
+    <h1 class="mt-0 mb-0">Resumen Inventario</h1>
+    
+</div>
+
+<hr class="bg-primary border-2 border-top border-primary">
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="col-md-12 shadow p-3 mb-4 bg-body rounded">
+                        <div class="row">
+                             <div class="col-4 dash d-flex justify-content-end align-self-center">
+                                <i class='bx bx-box'></i>
+                            </div>
+                            <div class="col-8">
+                                <p class="h3" id="text1">5</p>
+                                <h5>Productos</h5>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-12 shadow p-3 mb-4 bg-body rounded">
+                        <div class="row">
+                             <div class="col-4 dash d-flex justify-content-end align-self-center">
+                                <i class='bx bx-category' ></i>
+                            </div>
+                            <div class="col-8">
+                                <p class="h3" id="text2">21</p>
+                                <h5>Categorías</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-12 shadow p-3 mb-4 bg-body rounded">
+                        <div class="row">
+                             <div class="col-4 dash d-flex justify-content-end align-self-center">
+                                <i class='bx bx-money' ></i>
+                            </div>
+                            <div class="col-8">
+                                <p class="h3" id="text3"> $1000000</p>
+                                <h5>Valor inventario</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 ">
+        <div class="col-md-12 shadow p-3 mb-5 bg-body rounded">
+            <div>
+                <h4>Grafico de las ventas</h4>
+            </div>
+            <hr class="bg-dark border-2 border-top border-dark">
+            <div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label">Fecha 1</label>
+                        <input id="date1" type="date" class="form-control input-append date" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label">Fecha 2</label>
+                        <input id="date2" type="date" class="form-control input-append date" />
+                    </div>
+                    <div class="col-4 d-flex justify-content-center">
+                        <button id="boton"  type="button" class="btn btn-success">Generar gráfico</button>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="col-md-12 shadow p-3 mb-5 bg-body rounded">
+            <div>
+                <h4>Cantidad de productos por categoría</h4>
+            </div>
+            <hr class="bg-dark border-2 border-top border-dark">
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        const configvacio = {
+          type: 'line',
+          data: {
+          labels: [],
+          datasets: [{
+                label: 'Ventas por categoria entre dos fechas',
+                backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(26, 136, 150)',
+                'rgb(222, 38, 86)',
+                'rgb(168, 155, 81)',
+                'rgb(166, 242, 245)',
+                'rgb(245, 229, 142)',
+                'rgb(245, 245, 204)',
+                'rgb(168, 89, 143)',
+                'rgb(113, 168, 81)',
+                'rgb(150, 159, 245)',
+                'rgb(180, 245, 142)',
+                'rgb(245, 154, 118)',
+                'rgb(168, 112, 89)',
+                'rgb(161, 168, 81)',
+                'rgb(229, 100, 245)',
+                'rgb(142, 236, 245)',
+                'rgb(245, 220, 118)',
+                'rgb(168, 149, 66)',
+                'rgb(161, 127, 117)',
+                'rgb(196, 237, 157)'
+
+            ],
+                borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(26, 136, 150)',
+                'rgb(222, 38, 86)',
+                'rgb(168, 155, 81)',
+                'rgb(166, 242, 245)',
+                'rgb(245, 229, 142)',
+                'rgb(245, 245, 204)',
+                'rgb(168, 89, 143)',
+                'rgb(113, 168, 81)',
+                'rgb(150, 159, 245)',
+                'rgb(180, 245, 142)',
+                'rgb(245, 154, 118)',
+                'rgb(168, 112, 89)',
+                'rgb(161, 168, 81)',
+                'rgb(229, 100, 245)',
+                'rgb(142, 236, 245)',
+                'rgb(245, 220, 118)',
+                'rgb(168, 149, 66)',
+                'rgb(161, 127, 117)',
+                'rgb(196, 237, 157)'
+
+            ],
+                data: [],
+              }]
+          },
+          options: {}
+        };
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            configvacio
+        );
+
+        var totalDashboar = JSON.parse('@Html.Raw(Json.Serialize(@ViewBag.TotalDashboard))');
+        $("#text1").text(totalDashboar.cantprod)
+        $("#text2").text(totalDashboar.cantcate)
+        $("#text3").text("$ "+totalDashboar.preciototal)
+
+        var cantidad = JSON.parse('@Html.Raw(Json.Serialize(@ViewBag.CantidadProdCate))');
+
+        var labelsCate= new Array();
+        var datosCate= new Array();
+
+        for(let i = 0; i<cantidad.length; i++){
+            labelsCate[i] = cantidad[i].nombreCategoria;
+            datosCate[i] = cantidad[i].cantidadVendida;
+        }
+
+        const dataTorta = {
+            labels: labelsCate,
+            datasets: [{
+            label: 'tabla',
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(26, 136, 150)',
+                'rgb(222, 38, 86)',
+                'rgb(168, 155, 81)',
+                'rgb(166, 242, 245)',
+                'rgb(245, 229, 142)',
+                'rgb(245, 245, 204)',
+                'rgb(168, 89, 143)',
+                'rgb(113, 168, 81)',
+                'rgb(150, 159, 245)',
+                'rgb(180, 245, 142)',
+                'rgb(245, 154, 118)',
+                'rgb(168, 112, 89)',
+                'rgb(161, 168, 81)',
+                'rgb(229, 100, 245)',
+                'rgb(142, 236, 245)',
+                'rgb(245, 220, 118)',
+                'rgb(168, 149, 66)',
+                'rgb(161, 127, 117)',
+                'rgb(196, 237, 157)'
+
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(26, 136, 150)',
+                'rgb(222, 38, 86)',
+                'rgb(168, 155, 81)',
+                'rgb(166, 242, 245)',
+                'rgb(245, 229, 142)',
+                'rgb(245, 245, 204)',
+                'rgb(168, 89, 143)',
+                'rgb(113, 168, 81)',
+                'rgb(150, 159, 245)',
+                'rgb(180, 245, 142)',
+                'rgb(245, 154, 118)',
+                'rgb(168, 112, 89)',
+                'rgb(161, 168, 81)',
+                'rgb(229, 100, 245)',
+                'rgb(142, 236, 245)',
+                'rgb(245, 220, 118)',
+                'rgb(168, 149, 66)',
+                'rgb(161, 127, 117)',
+                'rgb(196, 237, 157)'
+            ],
+            data: datosCate,
+            }]
+        };
+
+        const config = {
+            type: 'doughnut',
+            data: dataTorta,
+            options: {}
+        };
+
+        const myChart2 = new Chart(
+            document.getElementById('myChart2'),
+            config
+        );
+
+
+        var respuesta;
+        var labelsg1= new Array();
+        var datosg1= new Array();
+
+      
+        $('#boton').click( function() {
+                myChart.destroy();
+                var tmp = null;
+                $.ajax({  
+                        async: false,
+                        type: "GET",  
+                        url: '/Dashboard/VentaPorCategorias/',  
+                        data: jQuery.param({ date1: $("#date1").val(), date2 : $("#date2").val()}) ,  
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+                        success: function (response) {  
+                            tmp = response;
+                        },  
+                        error: function () {  
+                            alert("Error while inserting data");  
+                        }  
+                });  
+                graficar(tmp);
+        });
+
+        function graficar(respuesta){
+
+            for(let i = 0; i<respuesta.length; i++){
+                labelsg1[i] = respuesta[i].nombreCategoria;
+                datosg1[i] = respuesta[i].cantidadVendida;
+            }
+
+            const data1 = {
+                labels: labelsg1,
+                datasets: [{
+                label: 'Ventas por categoria entre dos fechas',
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                borderColor: 'rgb(255, 99, 132)',
+                data: datosg1,
+                }]
+            };
+
+            const config1 = {
+                type: 'bar',
+                data: data1,
+                options: {}
+            };
+
+            myChart.destroy();
+
+            myChart = new Chart(
+                document.getElementById('myChart'),
+                config1
+            );
+        }
+        
+
+    </script>
+}

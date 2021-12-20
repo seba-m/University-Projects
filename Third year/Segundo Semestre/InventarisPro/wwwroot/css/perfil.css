@@ -1,0 +1,14 @@
+﻿img {
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.img-edit{
+    width: 100%;
+    height: 300px;
+}
+.img-edit img{
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,47 @@
+@model InventarisPro.Modelo.ViewModels.Trabajador.TrabajadorLoginViewModel
+
+@{
+    Layout = "_LayoutEmpty";
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="container-fluid bg">
+    <div class="row justify-content-center" >
+        <div class="col-6 mx-auto">
+            <div class="form-container-login">
+                <form method="post">
+                  <div class="logo_content mb-3"> 
+                    <a class="  " asp-controller="Home" asp-action="Index">
+                        <div class="logo">
+                            <i class="bx bxs-box"></i>
+                            <div class="logo_name">Inventaris</div>
+                        </div>
+                    </a>
+                  </div>
+                  <div class="mb-3">
+                    <label asp-for="Correo" class="form-label">Correo</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp" asp-for="Correo" placeholder="ejemplo@dominio.com">
+                    @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+                  </div>
+                  <div class="mb-3">
+                    <label asp-for="Contrasena" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" asp-for="Contrasena" placeholder="********">
+
+                  </div>
+                  @*<div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  </div>*@
+                  <div class="d-grid gap-2">
+                      <button type="submit" class="btn btn-success btn-block">Iniciar Sesión</button>
+                  </div>
+                  <p class="mt-2 mb-0">
+                     ¿No tiene una cuenta? 
+                     <a class="btn-reg" asp-area="" asp-controller="Account" asp-action="Register">Cree una.</a> 
+                  </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

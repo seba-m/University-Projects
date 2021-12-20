@@ -1,0 +1,1 @@
+$(".resize-text").fitText(1.1);
