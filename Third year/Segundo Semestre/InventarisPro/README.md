@@ -17,6 +17,6 @@ Con esto hecho, puede ejecutar el proyecto y ver que funciona.
 
 ## Consideraciones
 
--   El servidor de la base de datos usado fue AWS RDS y PostgreSql.
+-   El servidor de la base de datos usado fue AWS RDS y PostgreSql 12.8
 -   Se usa AWS S3 para almacenar las fotos.
 -   Es un proyecto de C#, usando asp.net core mvc 5 y compilador .net 6
