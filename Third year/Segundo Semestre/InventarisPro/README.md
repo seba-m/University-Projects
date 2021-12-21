@@ -15,7 +15,7 @@ Si desea cambiar la configuración de la aplicación, debe modificar los valores
 
 Con esto hecho, puede ejecutar el proyecto y ver que funciona.
 
-##Consideraciones
+## Consideraciones
 
 -   El servidor de la base de datos usado fue AWS RDS y PostgreSql.
 -   Se usa AWS S3 para almacenar las fotos.
