@@ -25,3 +25,5 @@ Dentro de cada carpeta se encuentra un `README.md` que explica detalladamente c√
 
 ## Demo
 [inventarispro](https://inventarispro.herokuapp.com)
+
+pd: para la demo, se ha desactivado la aplicaci√≥n android.
