@@ -24,4 +24,4 @@ Este proyecto, tal como dice su nombre, es un sistema de inventariado. En este r
 Dentro de cada carpeta se encuentra un `README.md` que explica detalladamente cómo se puede utilizar el proyecto.
 
 ## Demo
-[inventarispro](inventarispro.herokuapp.com)
+[inventarispro](https://inventarispro.herokuapp.com)
