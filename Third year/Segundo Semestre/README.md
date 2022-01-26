@@ -36,6 +36,16 @@
 - Javascript
 - Css
 - Html
+
+## Demo
+[inventaris-pro](https://inventaris-pro.herokuapp.com)
+
+### Limitaciones de la demo
+- Solo puede crear 10 productos.
+- Solo puede realizar 10 ventas.
+- Solo puede crear 10 trabajadores.
+- Los datos se borraran en cualquier momento. NO guarde nada personal en la demo.
+
 ---
 <a name="nota">1.-</a> Optimización del stock: es un proceso cuyo objetivo es lograr la máxima disponibilidad del inventario con la mínima inversión en stock.
 
